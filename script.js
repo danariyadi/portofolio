@@ -95,7 +95,8 @@ filterButtons.forEach((button) => {
     filterButtons.forEach((item) => item.classList.toggle("active", item === button));
 
     projectCards.forEach((card) => {
-      const matches = filter === "all" || card.dataset.category === filter;
+      const categories = (card.dataset.category || "").split(" ").filter(Boolean);
+      const matches = filter === "all" || categories.includes(filter);
       card.classList.toggle("is-hidden", !matches);
     });
   });

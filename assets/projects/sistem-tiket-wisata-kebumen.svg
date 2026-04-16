@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Sistem Tiket Wisata Kebumen</title>
+  <desc id="desc">Placeholder preview for Sistem Tiket Wisata Kebumen.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#071425"/>
+      <stop offset="100%" stop-color="#102d4a"/>
+    </linearGradient>
+    <linearGradient id="hero" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2c7dff"/>
+      <stop offset="100%" stop-color="#78d5ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <circle cx="1320" cy="130" r="220" fill="#7bc6ff" fill-opacity=".18"/>
+  <circle cx="200" cy="900" r="260" fill="#2c7dff" fill-opacity=".14"/>
+  <rect x="120" y="120" width="1360" height="760" rx="34" fill="#09121e" stroke="#89d0ff" stroke-opacity=".18"/>
+  <rect x="120" y="120" width="1360" height="94" rx="34" fill="#11253b"/>
+  <circle cx="182" cy="167" r="11" fill="#7ec8ff"/>
+  <circle cx="218" cy="167" r="11" fill="#c1e4ff" fill-opacity=".75"/>
+  <circle cx="254" cy="167" r="11" fill="#ffffff" fill-opacity=".38"/>
+  <rect x="314" y="153" width="338" height="28" rx="14" fill="#e9f5ff" fill-opacity=".8"/>
+  <rect x="1030" y="153" width="274" height="28" rx="14" fill="#254768"/>
+  <rect x="186" y="278" width="560" height="270" rx="28" fill="url(#hero)"/>
+  <rect x="780" y="278" width="516" height="118" rx="24" fill="#12253c"/>
+  <rect x="780" y="430" width="242" height="118" rx="24" fill="#102033"/>
+  <rect x="1054" y="430" width="242" height="118" rx="24" fill="#102033"/>
+  <rect x="186" y="596" width="1110" height="170" rx="26" fill="#0d1a2b"/>
+  <text x="226" y="360" fill="#ffffff" font-size="64" font-weight="700" font-family="Arial, sans-serif">Sistem Tiket</text>
+  <text x="226" y="435" fill="#ffffff" font-size="64" font-weight="700" font-family="Arial, sans-serif">Wisata Kebumen</text>
+  <text x="226" y="494" fill="#d8ecff" font-size="28" font-family="Arial, sans-serif">Landing page and booking flow preview</text>
+  <text x="820" y="345" fill="#d9ecff" font-size="26" font-weight="700" font-family="Arial, sans-serif">Search Destination</text>
+  <text x="820" y="492" fill="#d9ecff" font-size="24" font-family="Arial, sans-serif">Ticket options</text>
+  <text x="1092" y="492" fill="#d9ecff" font-size="24" font-family="Arial, sans-serif">Checkout</text>
+  <text x="226" y="676" fill="#c6ddf7" font-size="24" font-family="Arial, sans-serif">UI/UX case study preview for tourism ticketing website.</text>
+</svg>

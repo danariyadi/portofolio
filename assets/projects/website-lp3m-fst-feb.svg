@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Website LP3M FST dan FEB</title>
+  <desc id="desc">Placeholder preview for Website LP3M FST dan FEB.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#071224"/>
+      <stop offset="100%" stop-color="#1c2f5e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7ca8ff"/>
+      <stop offset="100%" stop-color="#b5d4ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <circle cx="1340" cy="132" r="228" fill="#9fcbff" fill-opacity=".16"/>
+  <rect x="120" y="120" width="1360" height="760" rx="36" fill="#09101b" stroke="#a9d0ff" stroke-opacity=".18"/>
+  <rect x="120" y="120" width="1360" height="94" rx="36" fill="#12264b"/>
+  <circle cx="182" cy="167" r="11" fill="#91c1ff"/>
+  <circle cx="218" cy="167" r="11" fill="#dbeaff" fill-opacity=".74"/>
+  <circle cx="254" cy="167" r="11" fill="#ffffff" fill-opacity=".38"/>
+  <rect x="314" y="153" width="340" height="28" rx="14" fill="#ecf4ff" fill-opacity=".8"/>
+  <rect x="186" y="276" width="1228" height="148" rx="28" fill="url(#accent)"/>
+  <rect x="186" y="458" width="388" height="300" rx="28" fill="#101d34"/>
+  <rect x="606" y="458" width="388" height="300" rx="28" fill="#101d34"/>
+  <rect x="1026" y="458" width="388" height="300" rx="28" fill="#101d34"/>
+  <text x="236" y="356" fill="#17345f" font-size="60" font-weight="700" font-family="Arial, sans-serif">LP3M, FST, and FEB</text>
+  <text x="236" y="420" fill="#24487e" font-size="28" font-family="Arial, sans-serif">Institutional WordPress sites during internship</text>
+  <text x="248" y="628" fill="#d8e7fb" font-size="28" font-weight="700" font-family="Arial, sans-serif">LP3M</text>
+  <text x="668" y="628" fill="#d8e7fb" font-size="28" font-weight="700" font-family="Arial, sans-serif">FST</text>
+  <text x="1088" y="628" fill="#d8e7fb" font-size="28" font-weight="700" font-family="Arial, sans-serif">FEB</text>
+</svg>

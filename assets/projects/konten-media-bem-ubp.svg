@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Konten Media BEM UBP</title>
+  <desc id="desc">Placeholder preview for Konten Media BEM UBP.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1524"/>
+      <stop offset="100%" stop-color="#243b65"/>
+    </linearGradient>
+    <linearGradient id="cardA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2c7dff"/>
+      <stop offset="100%" stop-color="#7cc7ff"/>
+    </linearGradient>
+    <linearGradient id="cardB" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff8466"/>
+      <stop offset="100%" stop-color="#ffd07a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <circle cx="1320" cy="140" r="220" fill="#78bcff" fill-opacity=".16"/>
+  <rect x="120" y="120" width="1360" height="760" rx="38" fill="#0d1320" stroke="#9ecfff" stroke-opacity=".18"/>
+  <rect x="182" y="182" width="300" height="560" rx="28" fill="url(#cardA)"/>
+  <rect x="520" y="232" width="260" height="510" rx="28" fill="#121f36"/>
+  <rect x="820" y="182" width="300" height="560" rx="28" fill="url(#cardB)"/>
+  <rect x="1158" y="232" width="260" height="510" rx="28" fill="#121f36"/>
+  <text x="210" y="302" fill="#ffffff" font-size="46" font-weight="700" font-family="Arial, sans-serif">BEM UBP</text>
+  <text x="210" y="356" fill="#e8f4ff" font-size="24" font-family="Arial, sans-serif">Social feed visual</text>
+  <text x="550" y="304" fill="#d7e8ff" font-size="42" font-weight="700" font-family="Arial, sans-serif">Campaign</text>
+  <text x="860" y="302" fill="#4e2919" font-size="46" font-weight="700" font-family="Arial, sans-serif">Event Post</text>
+  <text x="1190" y="304" fill="#d7e8ff" font-size="42" font-weight="700" font-family="Arial, sans-serif">Highlight</text>
+  <text x="182" y="844" fill="#eef7ff" font-size="34" font-weight="700" font-family="Arial, sans-serif">Konten Media BEM UBP</text>
+  <text x="182" y="892" fill="#bfd7f7" font-size="24" font-family="Arial, sans-serif">Preview gallery for social media design output</text>
+</svg>

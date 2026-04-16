@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Zaza Bakery Company Profile</title>
+  <desc id="desc">Placeholder preview for Zaza Bakery Company Profile.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#20130f"/>
+      <stop offset="100%" stop-color="#4b2b1d"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffb07a"/>
+      <stop offset="100%" stop-color="#ffe2ae"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <circle cx="1320" cy="140" r="220" fill="#ffd59a" fill-opacity=".18"/>
+  <circle cx="220" cy="860" r="250" fill="#ffb07a" fill-opacity=".11"/>
+  <rect x="118" y="120" width="1364" height="760" rx="34" fill="#1a110d" stroke="#ffc89b" stroke-opacity=".18"/>
+  <rect x="118" y="120" width="1364" height="94" rx="34" fill="#352016"/>
+  <circle cx="180" cy="167" r="11" fill="#ffb57f"/>
+  <circle cx="216" cy="167" r="11" fill="#ffe9c8" fill-opacity=".7"/>
+  <circle cx="252" cy="167" r="11" fill="#ffffff" fill-opacity=".34"/>
+  <rect x="314" y="153" width="342" height="28" rx="14" fill="#fff2de" fill-opacity=".78"/>
+  <rect x="174" y="262" width="520" height="492" rx="30" fill="url(#accent)"/>
+  <rect x="734" y="262" width="668" height="140" rx="28" fill="#21150f"/>
+  <rect x="734" y="436" width="320" height="318" rx="28" fill="#21150f"/>
+  <rect x="1082" y="436" width="320" height="318" rx="28" fill="#21150f"/>
+  <text x="222" y="362" fill="#4a2614" font-size="64" font-weight="700" font-family="Arial, sans-serif">Zaza Bakery</text>
+  <text x="222" y="432" fill="#5d2e1a" font-size="28" font-family="Arial, sans-serif">Company profile and product story</text>
+  <rect x="222" y="504" width="212" height="58" rx="29" fill="#7e4627" fill-opacity=".22"/>
+  <rect x="460" y="504" width="176" height="58" rx="29" fill="#7e4627" fill-opacity=".12"/>
+  <text x="778" y="346" fill="#ffe8d6" font-size="26" font-weight="700" font-family="Arial, sans-serif">WordPress Landing Experience</text>
+</svg>

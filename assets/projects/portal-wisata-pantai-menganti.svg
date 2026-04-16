@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Portal Wisata Pantai Menganti</title>
+  <desc id="desc">Placeholder preview for Portal Wisata Pantai Menganti.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#05131e"/>
+      <stop offset="100%" stop-color="#0d3551"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#89e0ff"/>
+      <stop offset="100%" stop-color="#0f6fd8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <circle cx="1360" cy="120" r="220" fill="#6ad8ff" fill-opacity=".16"/>
+  <rect x="120" y="120" width="1360" height="760" rx="36" fill="#071019" stroke="#79d6ff" stroke-opacity=".18"/>
+  <rect x="120" y="120" width="1360" height="94" rx="36" fill="#10283d"/>
+  <circle cx="182" cy="167" r="11" fill="#7fdcff"/>
+  <circle cx="218" cy="167" r="11" fill="#c7ecff" fill-opacity=".72"/>
+  <circle cx="254" cy="167" r="11" fill="#ffffff" fill-opacity=".36"/>
+  <rect x="314" y="153" width="352" height="28" rx="14" fill="#edfbff" fill-opacity=".78"/>
+  <rect x="174" y="260" width="1252" height="298" rx="30" fill="url(#sea)"/>
+  <path d="M174 468 C350 410 476 560 650 514 C834 468 916 362 1110 412 C1260 450 1336 520 1426 496 L1426 558 L174 558 Z" fill="#f8fbff" fill-opacity=".82"/>
+  <rect x="174" y="602" width="392" height="170" rx="26" fill="#102033"/>
+  <rect x="598" y="602" width="392" height="170" rx="26" fill="#102033"/>
+  <rect x="1022" y="602" width="404" height="170" rx="26" fill="#102033"/>
+  <text x="220" y="338" fill="#ffffff" font-size="72" font-weight="700" font-family="Arial, sans-serif">Pantai Menganti</text>
+  <text x="220" y="406" fill="#f0fbff" font-size="30" font-family="Arial, sans-serif">Tourism information portal preview</text>
+  <text x="220" y="680" fill="#d6e9fb" font-size="24" font-family="Arial, sans-serif">Highlights</text>
+  <text x="644" y="680" fill="#d6e9fb" font-size="24" font-family="Arial, sans-serif">Gallery</text>
+  <text x="1068" y="680" fill="#d6e9fb" font-size="24" font-family="Arial, sans-serif">Visitor Info</text>
+</svg>
