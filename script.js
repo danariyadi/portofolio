@@ -4,10 +4,52 @@ const menuToggle = document.querySelector(".menu-toggle");
 const navMenu = document.querySelector(".nav-menu");
 const navLinks = [...document.querySelectorAll(".nav-menu a")];
 const sections = [...document.querySelectorAll("section[id]")];
-const revealItems = document.querySelectorAll(".reveal");
-const filterButtons = document.querySelectorAll(".filter-button");
-const projectCards = document.querySelectorAll(".project-card");
+let revealItems = document.querySelectorAll(".reveal");
+let filterButtons = document.querySelectorAll(".filter-button");
+let projectCards = document.querySelectorAll(".project-card");
 const yearNode = document.getElementById("year");
+const designGallery = document.getElementById("design-gallery");
+
+const createRange = (start, end) => {
+  return Array.from({ length: end - start + 1 }, (_, index) => start + index);
+};
+
+const extensionGroups = [
+  { extension: "webp", numbers: [...createRange(11, 24), ...createRange(113, 116), ...createRange(334, 343), 552, 558, 562] },
+  { extension: "heic", numbers: [...createRange(25, 42), ...createRange(117, 122), ...createRange(221, 223), ...createRange(344, 346), 351, ...createRange(353, 357), ...createRange(553, 554), 557] },
+  { extension: "jpeg", numbers: createRange(126, 131) }
+];
+
+const fileExtensions = extensionGroups.reduce((extensions, group) => {
+  group.numbers.forEach((number) => {
+    extensions[number] = group.extension;
+  });
+
+  return extensions;
+}, {});
+
+const designItems = [
+  ...createRange(112, 131).map((number) => ({ number, label: "EVENT", category: "event" })),
+  ...createRange(11, 58).map((number) => ({ number, label: "HARI NASIONAL", category: "hari-nasional" })),
+  ...createRange(551, 562).map((number) => ({ number, label: "ORGANISASI", category: "organisasi" })),
+  ...createRange(334, 372).map((number) => ({ number, label: "RECAP", category: "recap" })),
+  ...createRange(221, 223).map((number) => ({ number, label: "LAINNYA", category: "lainnya" }))
+];
+
+if (designGallery) {
+  designGallery.innerHTML = designItems.map((item) => `
+    <article class="project-card design-card reveal" data-category="${item.category}">
+      <div class="project-media">
+        <img src="assets/projects/design/${item.number}.${fileExtensions[item.number] || "jpg"}" alt="${item.label} ${item.number}" loading="lazy" decoding="async">
+        <span class="project-status">${item.label}</span>
+      </div>
+    </article>
+  `).join("");
+
+  revealItems = document.querySelectorAll(".reveal");
+  filterButtons = document.querySelectorAll(".filter-button");
+  projectCards = document.querySelectorAll(".project-card");
+}
 
 const closeMenu = () => {
   if (!menuToggle || !navMenu) {
