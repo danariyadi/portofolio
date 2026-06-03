@@ -15,7 +15,7 @@ const createRange = (start, end) => {
 };
 
 const extensionGroups = [
-  { extension: "webp", numbers: [...createRange(11, 24), ...createRange(113, 116), ...createRange(334, 343), 552, 558, 562] },
+  { extension: "webp", numbers: [...createRange(11, 24), 48, 49, ...createRange(113, 116), ...createRange(334, 343), 552, 558, 562] },
   { extension: "heic", numbers: [...createRange(25, 42), ...createRange(117, 122), ...createRange(221, 223), ...createRange(344, 346), 351, ...createRange(353, 357), ...createRange(553, 554), 557] },
   { extension: "jpeg", numbers: createRange(126, 131) }
 ];
@@ -50,6 +50,91 @@ if (designGallery) {
   filterButtons = document.querySelectorAll(".filter-button");
   projectCards = document.querySelectorAll(".project-card");
 }
+
+document.querySelectorAll("[data-carousel]").forEach((carousel) => {
+  const imagePaths = (carousel.dataset.images || "").split("|").filter(Boolean);
+  const fallbackImage = carousel.querySelector("img");
+  const fallbackAlt = fallbackImage?.getAttribute("alt") || "Preview project website";
+
+  if (imagePaths.length > 1 && fallbackImage) {
+    const track = document.createElement("div");
+    track.className = "media-carousel-track";
+
+    imagePaths.forEach((path, index) => {
+      const slide = document.createElement("figure");
+      const image = document.createElement("img");
+
+      slide.className = "media-slide";
+      image.src = path;
+      image.alt = `${fallbackAlt} ${index + 1}`;
+      image.loading = "lazy";
+      image.decoding = "async";
+
+      slide.appendChild(image);
+      track.appendChild(slide);
+    });
+
+    fallbackImage.remove();
+    carousel.insertBefore(track, carousel.firstChild);
+
+    const previousButton = document.createElement("button");
+    const nextButton = document.createElement("button");
+    const dots = document.createElement("div");
+
+    previousButton.className = "carousel-button carousel-button--prev";
+    previousButton.type = "button";
+    previousButton.setAttribute("aria-label", "Foto sebelumnya");
+    previousButton.innerHTML = "&lsaquo;";
+
+    nextButton.className = "carousel-button carousel-button--next";
+    nextButton.type = "button";
+    nextButton.setAttribute("aria-label", "Foto berikutnya");
+    nextButton.innerHTML = "&rsaquo;";
+
+    dots.className = "carousel-dots";
+    dots.setAttribute("aria-hidden", "true");
+    dots.innerHTML = imagePaths.map((_, index) => `<span class="${index === 0 ? "active" : ""}"></span>`).join("");
+
+    carousel.append(previousButton, nextButton, dots);
+  }
+
+  const track = carousel.querySelector(".media-carousel-track");
+  const slides = [...carousel.querySelectorAll(".media-slide")];
+  const dots = [...carousel.querySelectorAll(".carousel-dots span")];
+  const previousButton = carousel.querySelector(".carousel-button--prev");
+  const nextButton = carousel.querySelector(".carousel-button--next");
+
+  if (!track || slides.length === 0) {
+    return;
+  }
+
+  const getCurrentIndex = () => {
+    const slideWidth = slides[0].getBoundingClientRect().width || track.clientWidth;
+    return Math.round(track.scrollLeft / slideWidth);
+  };
+
+  const updateDots = () => {
+    const currentIndex = Math.min(getCurrentIndex(), dots.length - 1);
+    dots.forEach((dot, index) => dot.classList.toggle("active", index === currentIndex));
+  };
+
+  const scrollToSlide = (index) => {
+    const slideWidth = slides[0].getBoundingClientRect().width || track.clientWidth;
+    const targetIndex = Math.max(0, Math.min(index, slides.length - 1));
+    track.scrollTo({ left: slideWidth * targetIndex, behavior: "smooth" });
+  };
+
+  previousButton?.addEventListener("click", () => {
+    scrollToSlide(getCurrentIndex() - 1);
+  });
+
+  nextButton?.addEventListener("click", () => {
+    scrollToSlide(getCurrentIndex() + 1);
+  });
+
+  track.addEventListener("scroll", updateDots, { passive: true });
+  updateDots();
+});
 
 const closeMenu = () => {
   if (!menuToggle || !navMenu) {
