@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" role="img" aria-labelledby="title desc">
+  <title id="title">Social Video Placeholder</title>
+  <desc id="desc">Template placeholder for a video portfolio thumbnail.</desc>
+  <rect width="1280" height="800" fill="#08111f"/>
+  <rect x="72" y="72" width="1136" height="656" rx="36" fill="#0d182a" stroke="#2c7dff" stroke-opacity=".35" stroke-width="4"/>
+  <polygon points="572,310 572,490 738,400" fill="#79bcff"/>
+  <text x="640" y="584" fill="#f4f8ff" font-family="Arial, sans-serif" font-size="48" font-weight="700" text-anchor="middle">Social Video</text>
+</svg>

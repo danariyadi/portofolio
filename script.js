@@ -2,7 +2,7 @@ const root = document.documentElement;
 const header = document.querySelector(".site-header");
 const menuToggle = document.querySelector(".menu-toggle");
 const navMenu = document.querySelector(".nav-menu");
-const navLinks = [...document.querySelectorAll('.nav-menu a[href^="#"]')];
+const navLinks = [...document.querySelectorAll(".nav-menu a")];
 const sections = [...document.querySelectorAll("section[id]")];
 const revealItems = document.querySelectorAll(".reveal");
 const filterButtons = document.querySelectorAll(".filter-button");
@@ -31,7 +31,21 @@ if (menuToggle && navMenu) {
   });
 }
 
-const setActiveLink = () => {
+const normalizePath = (path) => {
+  const fileName = path.split("/").pop() || "index.html";
+  return fileName === "" ? "index.html" : fileName;
+};
+
+const setActiveLinkByPage = () => {
+  const currentPage = normalizePath(window.location.pathname);
+
+  navLinks.forEach((link) => {
+    const linkPage = normalizePath(new URL(link.href, window.location.href).pathname);
+    link.classList.toggle("active", linkPage === currentPage);
+  });
+};
+
+const setActiveLinkBySection = () => {
   let currentSection = sections[0]?.id || "home";
 
   sections.forEach((section) => {
@@ -51,11 +65,16 @@ const setActiveLink = () => {
 
 const onScroll = () => {
   header?.classList.toggle("scrolled", window.scrollY > 18);
-  setActiveLink();
+  if (navLinks.some((link) => link.getAttribute("href")?.startsWith("#"))) {
+    setActiveLinkBySection();
+  } else {
+    setActiveLinkByPage();
+  }
 };
 
 window.addEventListener("scroll", onScroll, { passive: true });
 window.addEventListener("load", onScroll);
+setActiveLinkByPage();
 
 document.addEventListener("pointermove", (event) => {
   const x = (event.clientX / window.innerWidth) * 100;

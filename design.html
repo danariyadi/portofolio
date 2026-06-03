@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio graphic design Dana Riyadi.">
+  <title>Graphic Design | Dana Riyadi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header" id="top"><div class="container"><nav class="nav"><a class="brand" href="index.html" aria-label="Portfolio Dana Riyadi"><span class="brand-mark"></span><span class="brand-copy"><strong>DANA RIYADI</strong><small>Portfolio</small></span></a><button class="menu-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span></button><div class="nav-menu" id="nav-menu"><a href="index.html">Home</a><a href="about.html">About</a><a href="webdev.html">Web Dev</a><a class="active" href="design.html">Graphic Design</a><a href="video.html">Video</a><a href="achievements.html">Achievements</a><a class="nav-cta" href="contact.html">Contact</a></div></nav></div></header>
+    <main>
+      <section class="section page-hero">
+        <div class="container">
+          <div class="section-heading section-heading--split reveal">
+            <div><span class="section-label">Graphic Design</span><h1>Desain publikasi, media sosial, poster, banner, dan visual event.</h1></div>
+            <p>Halaman ini disiapkan sebagai gallery desain yang bisa ditambah project baru kapan saja.</p>
+          </div>
+          <div class="filter-bar reveal" role="tablist" aria-label="Filter desain grafis">
+            <button class="filter-button active" type="button" data-filter="all">All</button>
+            <button class="filter-button" type="button" data-filter="feed">Feed Instagram</button>
+            <button class="filter-button" type="button" data-filter="event">Event</button>
+            <button class="filter-button" type="button" data-filter="activity">Activity</button>
+            <button class="filter-button" type="button" data-filter="panitia">Panitia</button>
+            <button class="filter-button" type="button" data-filter="publication">Publication</button>
+          </div>
+
+          <div class="projects-grid design-grid">
+            <article class="project-card design-card reveal" data-category="feed">
+              <div class="project-media">
+                <img src="assets/projects/design/feed-instagram.svg" alt="Feed Instagram" loading="lazy" decoding="async">
+                <span class="project-status">Feed Instagram</span>
+              </div>
+            </article>
+
+            <article class="project-card design-card reveal" data-category="event">
+              <div class="project-media">
+                <img src="assets/projects/design/event-visual.svg" alt="Event Visual" loading="lazy" decoding="async">
+                <span class="project-status">Event</span>
+              </div>
+            </article>
+
+            <article class="project-card design-card reveal" data-category="publication">
+              <div class="project-media">
+                <img src="assets/projects/design/publication-kit.svg" alt="Publication Kit" loading="lazy" decoding="async">
+                <span class="project-status">Publication</span>
+              </div>
+            </article>
+
+            <article class="project-card design-card reveal" data-category="activity">
+              <div class="project-media">
+                <img src="assets/projects/design/activity-design.svg" alt="Activity Design" loading="lazy" decoding="async">
+                <span class="project-status">Activity</span>
+              </div>
+            </article>
+
+            <article class="project-card design-card reveal" data-category="panitia">
+              <div class="project-media">
+                <img src="assets/projects/design/panitia-design.svg" alt="Panitia Design" loading="lazy" decoding="async">
+                <span class="project-status">Panitia</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer"><div class="container footer-content"><p>Portfolio Dana Riyadi - Graphic Design and Web Developer.</p><p>&copy; <span id="year"></span> Dana Riyadi.</p></div></footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

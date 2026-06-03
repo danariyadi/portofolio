@@ -251,6 +251,8 @@ button {
 }
 
 .hero-copy h1,
+.section-heading h1,
+.contact-copy h1,
 .section-heading h2,
 .contact-copy h2 {
   margin: 16px 0;
@@ -595,8 +597,39 @@ button {
 }
 
 .section-heading h2,
+.section-heading h1,
+.contact-copy h1,
 .contact-copy h2 {
   font-size: clamp(1.9rem, 3.2vw, 2.7rem);
+}
+
+.page-hero {
+  padding-top: 48px;
+}
+
+.portfolio-link {
+  color: inherit;
+}
+
+.project-media--placeholder {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.project-media--placeholder strong {
+  position: relative;
+  z-index: 1;
+  font-family: "Sora", sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+}
+
+.achievement-stack {
+  display: grid;
+  gap: 18px;
 }
 
 .section-heading--split {
@@ -720,8 +753,24 @@ button {
 }
 
 .projects-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: start;
+}
+
+.design-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.design-grid .project-media {
+  aspect-ratio: 4 / 5;
+}
+
+.design-card {
+  gap: 0;
+}
+
+.design-card .project-media {
+  border-radius: 22px;
 }
 
 .project-card {
