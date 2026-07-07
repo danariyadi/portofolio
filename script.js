@@ -251,3 +251,45 @@ filterButtons.forEach((button) => {
 if (yearNode) {
   yearNode.textContent = String(new Date().getFullYear());
 }
+
+/* ─── Portfolio Picker Modal ──────────────────────────────────────────────── */
+
+const portfolioModalOverlay = document.getElementById("portfolio-modal");
+const portfolioModalPanel = document.getElementById("portfolio-modal-panel");
+const btnLihatPortfolio = document.getElementById("btn-lihat-portfolio");
+const modalCloseBtn = document.getElementById("modal-close-btn");
+
+const openPortfolioModal = () => {
+  if (!portfolioModalOverlay) return;
+  portfolioModalOverlay.removeAttribute("hidden");
+  requestAnimationFrame(() => {
+    portfolioModalOverlay.classList.add("is-open");
+  });
+  document.body.style.overflow = "hidden";
+  modalCloseBtn?.focus();
+};
+
+const closePortfolioModal = () => {
+  if (!portfolioModalOverlay) return;
+  portfolioModalOverlay.classList.remove("is-open");
+  document.body.style.overflow = "";
+  setTimeout(() => {
+    portfolioModalOverlay.setAttribute("hidden", "");
+  }, 280);
+  btnLihatPortfolio?.focus();
+};
+
+btnLihatPortfolio?.addEventListener("click", openPortfolioModal);
+modalCloseBtn?.addEventListener("click", closePortfolioModal);
+
+portfolioModalOverlay?.addEventListener("click", (event) => {
+  if (!portfolioModalPanel?.contains(event.target)) {
+    closePortfolioModal();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && portfolioModalOverlay && !portfolioModalOverlay.hasAttribute("hidden")) {
+    closePortfolioModal();
+  }
+});
