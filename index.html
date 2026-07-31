@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio Dana Riyadi, graphic design and web developer dari Kebumen dengan fokus pada website, desain visual, UI/UX, dan WordPress.">
-  <title>Dana Riyadi | Graphic Design & Web Developer</title>
+  <meta name="description" content="Portfolio Dana Riyadi, graphic designer dan web developer dari Kebumen. Spesialis website, desain visual, UI/UX, dan WordPress.">
+  <title>Dana Riyadi | Graphic Design &amp; Web Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -12,37 +12,35 @@
 </head>
 <body>
   <div class="page-shell">
+
+    <!-- NAV -->
     <header class="site-header" id="top">
       <div class="container">
         <nav class="nav">
-          <a class="brand" href="index.html" aria-label="Portfolio Dana Riyadi">
-            <span class="brand-mark"></span>
+          <a class="brand" href="#hero" aria-label="Portfolio Dana Riyadi">
             <span class="brand-copy">
               <strong>DANA RIYADI</strong>
               <small>Portfolio</small>
             </span>
           </a>
-
           <button class="menu-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="nav-menu">
             <span></span>
             <span></span>
           </button>
-
           <div class="nav-menu" id="nav-menu">
-            <a class="active" href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="webdev.html">Web Dev</a>
-            <a href="design.html">Graphic Design</a>
-            <a href="video.html">Video</a>
-            <a href="achievements.html">Achievements</a>
-            <a class="nav-cta" href="contact.html">Contact</a>
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#portfolio">Portfolio</a>
+            <a class="nav-cta" href="#contact">Contact</a>
           </div>
         </nav>
       </div>
     </header>
 
     <main>
-      <section class="hero section" id="home">
+
+      <!-- HERO -->
+      <section class="hero section" id="hero">
         <div class="container hero-grid">
           <div class="hero-copy reveal">
             <span class="eyebrow">SELAMAT DATANG</span>
@@ -55,12 +53,10 @@
               Lulusan S1 Ilmu Komputer Universitas Putra Bangsa yang terbiasa mengerjakan
               desain visual, website company profile, dan kebutuhan digital dengan pendekatan yang clean dan mudah dipahami.
             </p>
-
             <div class="hero-actions">
-              <button class="button button-primary" id="btn-lihat-portfolio" type="button" aria-haspopup="dialog" aria-controls="portfolio-modal">Lihat Portfolio</button>
-              <a class="button button-secondary" href="contact.html">Hubungi Saya</a>
+              <a class="button button-primary" href="#portfolio">Lihat Portfolio</a>
+              <a class="button button-secondary" href="#contact">Hubungi Saya</a>
             </div>
-
             <div class="hero-stats">
               <article>
                 <strong>10+</strong>
@@ -82,13 +78,10 @@
               <div class="hero-panel__blur"></div>
               <div class="hero-panel__top">
                 <div class="window-dots">
-                  <span></span>
-                  <span></span>
-                  <span></span>
+                  <span></span><span></span><span></span>
                 </div>
                 <p>Profile Snapshot</p>
               </div>
-
               <div class="hero-showcase">
                 <span class="showcase-badge">Based in Kebumen, Jawa Tengah</span>
                 <h2>Dana Riyadi</h2>
@@ -97,7 +90,6 @@
                   konten media sosial, poster, banner, dokumentasi foto video, dan UI sederhana
                   dengan pendekatan visual yang clean dan mudah dipahami.
                 </p>
-
                 <div class="showcase-grid">
                   <div class="showcase-card">
                     <span>Current Focus</span>
@@ -118,6 +110,7 @@
         </div>
       </section>
 
+      <!-- FEATURE STRIP -->
       <section class="section feature-strip">
         <div class="container feature-strip__grid">
           <article class="feature-card reveal">
@@ -138,37 +131,388 @@
         </div>
       </section>
 
-      <section class="section">
+      <!-- ABOUT -->
+      <section class="section" id="about">
         <div class="container">
-          <div class="section-heading section-heading--split reveal">
-            <div>
-              <span class="section-label">Portfolio Areas</span>
-              <h2>Pilih kategori karya yang ingin dilihat.</h2>
-            </div>
-            <p>
-              Karya dipisah menjadi halaman khusus agar tiap kategori lebih mudah dibaca dan siap dikembangkan.
-            </p>
-          </div>
+          <div class="about-landing-grid">
 
-          <div class="services-grid">
-            <a class="service-card reveal portfolio-link" href="webdev.html">
-              <div class="service-icon">WEB</div>
-              <h3>Web Development</h3>
-              <p>Website kampus, wisata, company profile, sistem internal, WordPress, dan Laravel.</p>
-            </a>
-            <a class="service-card reveal portfolio-link" href="design.html">
-              <div class="service-icon">DES</div>
-              <h3>Graphic Design</h3>
-              <p>Feed Instagram, poster, banner, pamflet, visual event, dan materi publikasi.</p>
-            </a>
-            <a class="service-card reveal portfolio-link" href="video.html">
-              <div class="service-icon">VID</div>
-              <h3>Video</h3>
-              <p>Dokumentasi kegiatan, videografi event, editing video, dan kebutuhan multimedia.</p>
-            </a>
+            <!-- Foto -->
+            <div class="about-photo-col reveal">
+              <div class="about-photo-frame">
+                <img src="assets/projects/foto saya.png" alt="Dana Riyadi" class="about-photo" loading="eager">
+                <div class="about-photo-badge">
+                  <span class="section-label">Based in Kebumen, Jawa Tengah</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Info -->
+            <div class="about-info-col">
+              <div class="reveal">
+                <span class="section-label">About Me</span>
+                <h2 style="font-family:'Sora',sans-serif;font-size:clamp(1.6rem,2.8vw,2.2rem);line-height:1.15;letter-spacing:-0.03em;margin:14px 0 18px;">Berangkat dari project kampus, organisasi, dan kebutuhan visual yang nyata.</h2>
+                <p style="color:var(--muted);line-height:1.78;font-size:0.97rem;margin:0 0 24px;">
+                  Saya memiliki ketertarikan kuat pada desain grafis dan web development. Selain mempelajari HTML,
+                  CSS, PHP, Python, C++, dan Java, saya juga sudah memiliki pengalaman membuat website, desain grafis,
+                  serta desain UI/UX. Setiap project saya kerjakan dengan pendekatan yang clean, komunikatif,
+                  dan mudah digunakan agar hasil akhirnya benar-benar siap dipakai.
+                </p>
+              </div>
+
+              <div class="about-info-cards">
+                <article class="glass-card reveal">
+                  <h3>Pendidikan</h3>
+                  <p>S1 Ilmu Komputer, Universitas Putra Bangsa, Kebumen, Jawa Tengah.</p>
+                  <div class="tag-list" style="margin-top:14px;">
+                    <span>Sep 2022 - sekarang</span>
+                    <span>Universitas Putra Bangsa</span>
+                    <span>S1 Ilmu Komputer</span>
+                  </div>
+                </article>
+
+                <article class="glass-card reveal">
+                  <h3>Skills &amp; Tools</h3>
+                  <div class="tag-list skill-cloud" style="margin-top:14px;">
+                    <span>HTML</span><span>CSS</span><span>PHP</span><span>Python</span><span>Laravel</span>
+                    <span>Next.js</span><span>WordPress</span><span>Figma</span><span>Canva</span>
+                    <span>CorelDRAW</span><span>Adobe Premiere</span><span>CapCut</span>
+                  </div>
+                </article>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
+
+      <!-- EXPERIENCE -->
+      <section class="section process-section" id="experience">
+        <div class="container">
+          <div class="section-heading section-heading--split reveal">
+            <div>
+              <span class="section-label">Experience</span>
+              <h2>Pengalaman yang membentuk arah kerja saya.</h2>
+            </div>
+            <p>
+              Dari internship, studi independen, sampai organisasi kampus, pengalaman saya banyak bergerak
+              di area website, publikasi visual, dan operasional media digital.
+            </p>
+          </div>
+          <div class="experience-grid">
+            <article class="glass-card reveal experience-card">
+              <div class="experience-meta"><span>Sep 2025 - Jan 2026</span><span>Internship</span></div>
+              <h3>Web Developer</h3>
+              <h4>Universitas Putra Bangsa</h4>
+              <ul class="experience-list">
+                <li>Merancang sistem penilaian kinerja karyawan.</li>
+                <li>Membuat website LP3M, FST, dan FEB berbasis WordPress.</li>
+              </ul>
+            </article>
+            <article class="glass-card reveal experience-card">
+              <div class="experience-meta"><span>Sep 2024 - Des 2024</span><span>Certified Study</span></div>
+              <h3>Platform and Web Developer</h3>
+              <h4>PT Maleo Edukasi Teknologi</h4>
+              <ul class="experience-list">
+                <li>Mempelajari pembuatan platform edukasi.</li>
+                <li>Membuat website Daycare with Education.</li>
+              </ul>
+            </article>
+            <article class="glass-card reveal experience-card">
+              <div class="experience-meta"><span>Des 2024 - Des 2025</span><span>Leadership</span></div>
+              <h3>Kepala Departemen Media dan Informasi</h3>
+              <h4>BEM Universitas Putra Bangsa</h4>
+              <ul class="experience-list">
+                <li>Membuat desain program kerja BEM dan mengelola Instagram resmi BEM.</li>
+                <li>Mengelola website resmi BEM serta kebutuhan media acara.</li>
+              </ul>
+            </article>
+            <article class="glass-card reveal experience-card">
+              <div class="experience-meta"><span>2022 - 2025</span><span>Publication</span></div>
+              <h3>Divisi Publikasi, Desain, dan Dokumentasi</h3>
+              <h4>PROSPEK, UKM English Club, dan Bedah Kampus</h4>
+              <ul class="experience-list">
+                <li>Membuat pamflet, poster, banner, feed sosial media, dan dokumentasi kegiatan.</li>
+                <li>Menjadi operator multimedia saat acara berlangsung.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- PORTFOLIO -->
+      <section class="section" id="portfolio">
+        <div class="container">
+          <div class="section-heading section-heading--split reveal">
+            <div>
+              <span class="section-label">Portfolio</span>
+              <h2>Karya pilihan terbaik.</h2>
+            </div>
+            <p>Beberapa project web development, desain grafis, dan video terpilih.</p>
+          </div>
+
+          <!-- WEB DEV -->
+          <div style="margin-bottom:18px;" class="reveal">
+            <span class="section-label">Web Development</span>
+          </div>
+          <div class="projects-grid" style="align-items:stretch;">
+
+            <!-- LP3M Next.js -->
+            <article class="project-card reveal">
+              <div class="project-media media-carousel" style="aspect-ratio:1920/912;" data-carousel data-images="assets/projects/webdev/lp3mv2-1.png|assets/projects/webdev/lp3mv2-2.png|assets/projects/webdev/lp3mv2-3.png|assets/projects/webdev/lp3mv2-4.png|assets/projects/webdev/lp3mv2-5.png">
+                <img src="assets/projects/webdev/lp3mv2-1.png" alt="Preview Web LP3M UPB Next.js" loading="lazy" decoding="async">
+                <span class="project-status">Next.js Site</span>
+              </div>
+              <div class="project-content" style="display:flex;flex-direction:column;">
+                <div class="project-meta"><span>Next.js</span><span>Campus</span></div>
+                <h3>Web LP3M UPB</h3>
+                <p style="flex:1;">Website LP3M Universitas Putra Bangsa yang dibangun ulang menggunakan Next.js dan MySQL. Hadir dengan tampilan yang lebih modern dan performa yang lebih optimal dibanding versi WordPress.</p>
+                <div class="project-tags"><span>Next.js</span><span>MySQL</span><span>LP3M</span></div>
+              </div>
+            </article>
+
+            <!-- Web Fakultas (FST + FEB gabungan) -->
+            <article class="project-card reveal">
+              <div class="project-media media-carousel" style="aspect-ratio:1920/912;" data-carousel data-images="assets/projects/webdev/fst1.png|assets/projects/webdev/fst2.png|assets/projects/webdev/fst3.png|assets/projects/webdev/fst4.png|assets/projects/webdev/feb1.png|assets/projects/webdev/feb2.png|assets/projects/webdev/feb3.png|assets/projects/webdev/feb4.png">
+                <img src="assets/projects/webdev/fst1.png" alt="Preview Web Fakultas UPB" loading="lazy" decoding="async">
+                <span class="project-status">WordPress Site</span>
+              </div>
+              <div class="project-content" style="display:flex;flex-direction:column;">
+                <div class="project-meta"><span>WordPress</span><span>Campus</span></div>
+                <h3>Web Fakultas UPB</h3>
+                <p style="flex:1;">Website resmi Fakultas Sains dan Teknologi (FST) serta Fakultas Ekonomi dan Bisnis (FEB) Universitas Putra Bangsa berbasis WordPress. Menampilkan informasi akademik, berita kegiatan, dan profil program studi.</p>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+                  <a href="https://fst.universitasputrabangsa.ac.id/" target="_blank" rel="noopener" class="button button-secondary" style="display:inline-flex;align-items:center;gap:6px;min-height:40px;font-size:0.85rem;">FST</a>
+                  <a href="https://feb.universitasputrabangsa.ac.id/" target="_blank" rel="noopener" class="button button-secondary" style="display:inline-flex;align-items:center;gap:6px;min-height:40px;font-size:0.85rem;">FEB</a>
+                </div>
+                <div class="project-tags"><span>WordPress</span><span>Institusi</span><span>UPB</span></div>
+              </div>
+            </article>
+
+            <!-- Zaza Bakery -->
+            <article class="project-card reveal">
+              <div class="project-media media-carousel" style="aspect-ratio:1920/912;" data-carousel data-images="assets/projects/webdev/zaza1.png|assets/projects/webdev/zaza2.png|assets/projects/webdev/zaza3.png|assets/projects/webdev/zaza4.png|assets/projects/webdev/zaza5.png|assets/projects/webdev/zaza6.png|assets/projects/webdev/zaza7.png|assets/projects/webdev/zaza8.png">
+                <img src="assets/projects/webdev/zaza1.png" alt="Preview Web Company Profile Zaza Bakery" loading="lazy" decoding="async">
+                <span class="project-status">WordPress Site</span>
+              </div>
+              <div class="project-content" style="display:flex;flex-direction:column;">
+                <div class="project-meta"><span>WordPress</span><span>Business</span></div>
+                <h3>Web Company Profile Zaza Bakery</h3>
+                <p style="flex:1;">Website company profile toko roti Zaza Bakery berbasis WordPress. Menampilkan katalog produk, fitur pemesanan via WhatsApp, testimoni pelanggan, FAQ, dan tautan media sosial.</p>
+                <div class="project-tags"><span>WordPress</span><span>Business</span><span>Company Profile</span></div>
+              </div>
+            </article>
+
+            <!-- Daycare -->
+            <article class="project-card reveal">
+              <div class="project-media media-carousel" style="aspect-ratio:1920/912;" data-carousel data-images="assets/projects/webdev/daycare1.png|assets/projects/webdev/daycare2.png|assets/projects/webdev/daycare3.png|assets/projects/webdev/daycare4.png|assets/projects/webdev/daycare5.png|assets/projects/webdev/daycare6.png">
+                <img src="assets/projects/webdev/daycare1.png" alt="Preview Web Pendaftaran Daycare" loading="lazy" decoding="async">
+                <span class="project-status">Django App</span>
+              </div>
+              <div class="project-content" style="display:flex;flex-direction:column;">
+                <div class="project-meta"><span>Django</span><span>Education</span></div>
+                <h3>Web Pendaftaran Daycare</h3>
+                <p style="flex:1;">Aplikasi web pendaftaran daycare dibangun dengan Django (Python), HTML, CSS, dan SQLite. Fitur pendaftaran anak secara online, pemantauan perkembangan anak, dan informasi parenting.</p>
+                <div class="project-tags"><span>Django</span><span>Python</span><span>SQLite</span></div>
+              </div>
+            </article>
+
+            <!-- UI/UX My UKM -->
+            <article class="project-card reveal">
+              <div class="project-media media-carousel" style="aspect-ratio:1920/912;" data-carousel data-images="assets/projects/webdev/ukm1.png|assets/projects/webdev/ukm2.png|assets/projects/webdev/ukm3.png|assets/projects/webdev/ukm4.png|assets/projects/webdev/ukm5.png">
+                <img src="assets/projects/webdev/ukm1.png" alt="Preview UI/UX Aplikasi My UKM" loading="lazy" decoding="async">
+                <span class="project-status">UI/UX Design</span>
+              </div>
+              <div class="project-content" style="display:flex;flex-direction:column;">
+                <div class="project-meta"><span>UI/UX</span><span>Mobile App</span></div>
+                <h3>UI/UX Aplikasi My UKM</h3>
+                <p style="flex:1;">Rancangan UI/UX aplikasi My UKM untuk pengelolaan Unit Kegiatan Mahasiswa secara digital. Memudahkan pendaftaran anggota dan pencatatan presensi kegiatan UKM melalui aplikasi mobile.</p>
+                <div class="project-tags"><span>UI/UX</span><span>Figma</span><span>Mobile</span></div>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- BUTTON SUB-SECTION WEB DEV -->
+          <div style="text-align: center; margin-top: 24px; margin-bottom: 48px;" class="reveal">
+            <a class="button button-secondary" href="portfolio.html?filter=web" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.92rem;">
+              <span>Lihat Lebih Banyak Web Dev</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+
+          <!-- GRAPHIC DESIGN -->
+          <div style="margin-bottom:18px;" class="reveal">
+            <span class="section-label">Graphic Design</span>
+          </div>
+          <div class="projects-grid design-grid">
+            <article class="project-card design-card reveal">
+              <div class="project-media" style="aspect-ratio:4/5;">
+                <img src="assets/projects/design/14.webp" alt="Design 14" loading="lazy" decoding="async">
+              </div>
+            </article>
+            <article class="project-card design-card reveal">
+              <div class="project-media" style="aspect-ratio:4/5;">
+                <img src="assets/projects/design/31.heic" alt="Design 31" loading="lazy" decoding="async">
+              </div>
+            </article>
+            <article class="project-card design-card reveal">
+              <div class="project-media" style="aspect-ratio:4/5;">
+                <img src="assets/projects/design/43.jpg" alt="Design 43" loading="lazy" decoding="async">
+              </div>
+            </article>
+            <article class="project-card design-card reveal">
+              <div class="project-media" style="aspect-ratio:4/5;">
+                <img src="assets/projects/design/120.heic" alt="Design 120" loading="lazy" decoding="async">
+              </div>
+            </article>
+            <article class="project-card design-card reveal">
+              <div class="project-media" style="aspect-ratio:4/5;">
+                <img src="assets/projects/design/125.jpg" alt="Design 125" loading="lazy" decoding="async">
+              </div>
+            </article>
+            <article class="project-card design-card reveal">
+              <div class="project-media" style="aspect-ratio:4/5;">
+                <img src="assets/projects/design/560.jpg" alt="Design 560" loading="lazy" decoding="async">
+              </div>
+            </article>
+            <article class="project-card design-card reveal">
+              <div class="project-media" style="aspect-ratio:4/5;">
+                <img src="assets/projects/design/555.jpg" alt="Design 555" loading="lazy" decoding="async">
+              </div>
+            </article>
+            <article class="project-card design-card reveal">
+              <div class="project-media" style="aspect-ratio:4/5;">
+                <img src="assets/projects/design/371.jpg" alt="Design 371" loading="lazy" decoding="async">
+              </div>
+            </article>
+            <article class="project-card design-card reveal">
+              <div class="project-media" style="aspect-ratio:4/5;">
+                <img src="assets/projects/design/352.jpg" alt="Design 352" loading="lazy" decoding="async">
+              </div>
+            </article>
+            <article class="project-card design-card reveal">
+              <div class="project-media" style="aspect-ratio:4/5;">
+                <img src="assets/projects/design/341.webp" alt="Design 341" loading="lazy" decoding="async">
+              </div>
+            </article>
+          </div>
+
+          <!-- BUTTON SUB-SECTION GRAPHIC DESIGN -->
+          <div style="text-align: center; margin-top: 24px; margin-bottom: 48px;" class="reveal">
+            <a class="button button-secondary" href="portfolio.html?filter=design" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.92rem;">
+              <span>Lihat Lebih Banyak Desain</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+
+          <!-- VIDEO -->
+          <div style="margin-bottom:18px;" class="reveal">
+            <span class="section-label">Video</span>
+          </div>
+          <div class="projects-grid">
+            <article class="project-card reveal">
+              <a href="https://www.youtube.com/watch?v=QSQfKe1WLQ4" target="_blank" rel="noopener noreferrer" class="video-thumb-link" aria-label="Tonton Video Profile BEM UPB 2025 di YouTube">
+                <div class="project-media video-thumb" style="aspect-ratio:16/9;">
+                  <img src="https://img.youtube.com/vi/QSQfKe1WLQ4/maxresdefault.jpg" alt="Video Profile BEM UPB 2025" loading="lazy" decoding="async">
+                  <div class="video-play-btn" aria-hidden="true">
+                    <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="26" cy="26" r="26" fill="rgba(255,255,255,0.92)"/>
+                      <path d="M21 18l16 8-16 8V18z" fill="#3B1C08"/>
+                    </svg>
+                  </div>
+                  <span class="video-yt-badge">YouTube</span>
+                </div>
+              </a>
+              <div class="project-content">
+                <div class="project-meta"><span>Video</span><span>Organisasi</span></div>
+                <h3>Video Profile BEM UPB 2025</h3>
+                <p>Video profile resmi BEM Universitas Putra Bangsa 2025 – Kabinet Bima Cita. Menampilkan visi, misi, dan semangat pengabdian kabinet dalam satu karya sinematik.</p>
+                <a href="https://www.youtube.com/watch?v=QSQfKe1WLQ4" target="_blank" rel="noopener" class="button button-secondary" style="display:inline-flex;align-items:center;gap:8px;margin-bottom:8px;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                  Tonton di YouTube
+                </a>
+                <div class="project-tags"><span>Video Profile</span><span>BEM UPB</span><span>Sinematik</span></div>
+              </div>
+            </article>
+
+            <article class="project-card reveal">
+              <a href="https://www.youtube.com/watch?v=WlWO-FxSLHY" target="_blank" rel="noopener noreferrer" class="video-thumb-link" aria-label="Tonton Papermob Prospek UPB 2025 di YouTube">
+                <div class="project-media video-thumb" style="aspect-ratio:16/9;">
+                  <img src="https://img.youtube.com/vi/WlWO-FxSLHY/maxresdefault.jpg" alt="Papermob Prospek UPB 2025" loading="lazy" decoding="async">
+                  <div class="video-play-btn" aria-hidden="true">
+                    <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="26" cy="26" r="26" fill="rgba(255,255,255,0.92)"/>
+                      <path d="M21 18l16 8-16 8V18z" fill="#3B1C08"/>
+                    </svg>
+                  </div>
+                  <span class="video-yt-badge">YouTube</span>
+                </div>
+              </a>
+              <div class="project-content">
+                <div class="project-meta"><span>Video</span><span>Event</span></div>
+                <h3>Papermob Prospek UPB 2025</h3>
+                <p>Dokumentasi aksi papermob spektakuler dalam rangkaian kegiatan Prospek UPB 2025. Ratusan mahasiswa baru membentuk formasi visual yang memukau sebagai simbol kebersamaan dan semangat kampus.</p>
+                <a href="https://www.youtube.com/watch?v=WlWO-FxSLHY" target="_blank" rel="noopener" class="button button-secondary" style="display:inline-flex;align-items:center;gap:8px;margin-bottom:8px;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                  Tonton di YouTube
+                </a>
+                <div class="project-tags"><span>Dokumentasi</span><span>Papermob</span><span>Prospek UPB</span></div>
+              </div>
+            </article>
+          </div>
+
+          <!-- BUTTON SUB-SECTION VIDEO -->
+          <div style="text-align: center; margin-top: 24px; margin-bottom: 32px;" class="reveal">
+            <a class="button button-secondary" href="portfolio.html?filter=video" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.92rem;">
+              <span>Lihat Lebih Banyak Video</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section" id="contact">
+        <div class="container">
+          <div class="contact-panel reveal">
+            <div class="contact-copy">
+              <span class="section-label">Contact</span>
+              <h2>Siap untuk project desain, website, atau kolaborasi digital.</h2>
+              <p>
+                Saya terbuka untuk kolaborasi pada website company profile, landing page, desain publikasi,
+                konten media sosial, dan kebutuhan visual digital lainnya dengan tampilan yang rapi dan fungsional.
+              </p>
+              <div class="contact-list">
+                <a href="mailto:danariyadi111@gmail.com">danariyadi111@gmail.com</a>
+                <a href="https://www.instagram.com/dana.ry__" target="_blank" rel="noreferrer">@dana.ry__</a>
+                <a href="https://www.linkedin.com/in/dana-riyadi-aab14333b" target="_blank" rel="noreferrer">LinkedIn - Dana Riyadi</a>
+                <a href="https://maps.google.com/?q=Kebumen%2C%20Jawa%20Tengah" target="_blank" rel="noreferrer">Kebumen, Jawa Tengah</a>
+              </div>
+            </div>
+            <div class="contact-form contact-side">
+              <h3>Quick Profile</h3>
+              <ul class="value-list compact-list">
+                <li>Lulusan S1 Ilmu Komputer di Universitas Putra Bangsa.</li>
+                <li>Terbiasa mengerjakan website, desain promosi, dan dokumentasi multimedia.</li>
+                <li>Fokus pada WordPress, UI/UX, graphic design, dan frontend dasar.</li>
+              </ul>
+              <div class="tag-list">
+                <span>Freelance</span>
+                <span>Graphic Design</span>
+                <span>Web Development</span>
+                <span>UI/UX</span>
+              </div>
+              <div class="contact-actions">
+                <a class="button button-primary" href="mailto:danariyadi111@gmail.com">Email Saya</a>
+                <a class="button button-secondary" href="https://www.instagram.com/dana.ry__" target="_blank" rel="noreferrer">Instagram</a>
+                <a class="button button-secondary" href="https://www.linkedin.com/in/dana-riyadi-aab14333b" target="_blank" rel="noreferrer">LinkedIn</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
 
     <footer class="site-footer">
@@ -177,89 +521,6 @@
         <p>&copy; <span id="year"></span> Dana Riyadi.</p>
       </div>
     </footer>
-  </div>
-
-  <!-- Portfolio Picker Modal -->
-  <div class="portfolio-modal-overlay" id="portfolio-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
-    <div class="portfolio-modal" id="portfolio-modal-panel">
-      <button class="modal-close" id="modal-close-btn" type="button" aria-label="Tutup pilihan portfolio">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M5 5L15 15M15 5L5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-      </button>
-
-      <div class="modal-header">
-        <span class="modal-eyebrow">Portfolio</span>
-        <h2 class="modal-title" id="modal-title">Mau lihat karya apa?</h2>
-        <p class="modal-subtitle">Pilih kategori karya yang ingin kamu jelajahi.</p>
-      </div>
-
-      <div class="modal-categories">
-        <a class="modal-category-card" href="webdev.html" id="cat-webdev">
-          <div class="mcc-icon">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="5" width="24" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
-              <path d="M2 10h24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-              <circle cx="6" cy="7.5" r="1" fill="currentColor"/>
-              <circle cx="9.5" cy="7.5" r="1" fill="currentColor"/>
-              <circle cx="13" cy="7.5" r="1" fill="currentColor"/>
-              <path d="M8 16l3 3 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="mcc-body">
-            <h3>Web Development</h3>
-            <p>Website kampus, company profile, WordPress &amp; Laravel</p>
-          </div>
-          <div class="mcc-arrow">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <span class="mcc-badge">10+ Project</span>
-        </a>
-
-        <a class="modal-category-card" href="design.html" id="cat-design">
-          <div class="mcc-icon">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="14" cy="14" r="10" stroke="currentColor" stroke-width="1.6"/>
-              <circle cx="14" cy="14" r="4" stroke="currentColor" stroke-width="1.6"/>
-              <path d="M14 4v4M14 20v4M4 14h4M20 14h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="mcc-body">
-            <h3>Graphic Design</h3>
-            <p>Poster, banner, feed Instagram, dan materi publikasi</p>
-          </div>
-          <div class="mcc-arrow">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <span class="mcc-badge">80+ Desain</span>
-        </a>
-
-        <a class="modal-category-card" href="video.html" id="cat-video">
-          <div class="mcc-icon">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="6" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.6"/>
-              <path d="M20 11l6-4v14l-6-4V11Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="mcc-body">
-            <h3>Video &amp; Multimedia</h3>
-            <p>Dokumentasi kegiatan, videografi event, dan editing</p>
-          </div>
-          <div class="mcc-arrow">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <span class="mcc-badge">Multimedia</span>
-        </a>
-      </div>
-
-      <p class="modal-hint">Atau lihat semua lewat menu navigasi di atas.</p>
-    </div>
   </div>
 
   <script src="script.js"></script>

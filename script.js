@@ -154,7 +154,19 @@ if (menuToggle && navMenu) {
   });
 
   navLinks.forEach((link) => {
-    link.addEventListener("click", closeMenu);
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href");
+      if (href && href.startsWith("#")) {
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          const offset = header ? header.offsetHeight + 12 : 0;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
+      }
+      closeMenu();
+    });
   });
 }
 
@@ -247,6 +259,15 @@ filterButtons.forEach((button) => {
     });
   });
 });
+
+const urlParams = new URLSearchParams(window.location.search);
+const initialFilter = urlParams.get("filter");
+if (initialFilter) {
+  const targetButton = document.querySelector(`.filter-button[data-filter="${initialFilter}"]`);
+  if (targetButton) {
+    targetButton.click();
+  }
+}
 
 if (yearNode) {
   yearNode.textContent = String(new Date().getFullYear());
