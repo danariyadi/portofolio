@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Portfolio Dana Riyadi, graphic designer dan web developer dari Kebumen. Spesialis website, desain visual, UI/UX, dan WordPress.">
   <title>Dana Riyadi</title>
+  <link rel="icon" type="image/png" href="assets/projects/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -17,8 +18,7 @@
     <header class="site-header" id="top">
       <div class="container">
         <nav class="nav">
-          <a class="brand" href="#hero" aria-label="Portfolio Dana Riyadi">
-            <img src="assets/projects/logo.png" alt="Dana Riyadi Logo" class="brand-logo">
+          <a class="brand" href="#about" aria-label="Portfolio Dana Riyadi">
             <span class="brand-copy">
               <strong>DANA RIYADI</strong>
               <small>Portfolio</small>
@@ -40,73 +40,86 @@
 
     <main>
 
-      <!-- HERO -->
-      <section class="hero section" id="hero">
-        <div class="container hero-grid">
-          <div class="hero-copy reveal">
-            <span class="eyebrow">SELAMAT DATANG</span>
-            <h1>Dana Riyadi</h1>
-            <p class="hero-lead">
-              Fokus pada website, WordPress, frontend development, dan UI/UX untuk kebutuhan kampus,
-              organisasi, bisnis, dan project digital.
-            </p>
-            <p>
-              Lulusan S1 Ilmu Komputer Universitas Putra Bangsa yang terbiasa mengerjakan
-              desain visual, website company profile, dan kebutuhan digital dengan pendekatan yang clean dan mudah dipahami.
-            </p>
-            <div class="hero-actions">
-              <a class="button button-primary" href="#portfolio">Lihat Portfolio</a>
-              <a class="button button-secondary" href="#contact">Hubungi Saya</a>
-            </div>
-            <div class="hero-stats">
-              <article>
-                <strong>10+</strong>
-                <span>Website dan sistem yang pernah saya kerjakan</span>
-              </article>
-              <article>
-                <strong>10+</strong>
-                <span>Peran publikasi, media, dan dokumentasi organisasi</span>
-              </article>
-              <article>
-                <strong>3+</strong>
-                <span>Prestasi Akademik dan Non-Akademik</span>
-              </article>
-            </div>
-          </div>
+      <!-- HERO / ABOUT (FIRST SECTION) -->
+      <section class="section page-hero" id="about">
+        <div class="container">
+          <div class="about-landing-grid">
 
-          <div class="hero-visual reveal">
-            <div class="hero-panel">
-              <div class="hero-panel__blur"></div>
-              <div class="hero-panel__top">
-                <div class="window-dots">
-                  <span></span><span></span><span></span>
+            <!-- Foto & Quick Stats -->
+            <div class="about-photo-col reveal">
+              <div class="about-photo-frame">
+                <img src="assets/projects/foto saya.png" alt="Dana Riyadi" class="about-photo" loading="eager">
+                <div class="about-photo-badge">
+                  <span class="section-label" style="color: #ffffff; border-color: rgba(255,255,255,0.35); background: rgba(15,23,42,0.45); backdrop-filter: blur(8px);">Based in Kebumen, Jawa Tengah</span>
                 </div>
-                <p>Profile Snapshot</p>
               </div>
-              <div class="hero-showcase">
-                <span class="showcase-badge">Based in Kebumen, Jawa Tengah</span>
-                <h2>Dana Riyadi</h2>
-                <p>
-                  Saya terbiasa mengerjakan website kampus, company profile, sistem berbasis web,
-                  konten media sosial, poster, banner, dokumentasi foto video, dan UI sederhana
-                  dengan pendekatan visual yang clean dan mudah dipahami.
-                </p>
-                <div class="showcase-grid">
-                  <div class="showcase-card">
-                    <span>Current Focus</span>
-                    <strong>Graphic Design, Web Development, UI/UX</strong>
-                  </div>
-                  <div class="showcase-card">
-                    <span>Main Tools</span>
-                    <strong>Figma, Canva, CorelDRAW, WordPress</strong>
-                  </div>
-                  <div class="showcase-card wide">
-                    <span>Types of Work</span>
-                    <strong>Website kampus, company profile, publikasi acara, social media content, dan dokumentasi multimedia</strong>
-                  </div>
-                </div>
+              <div class="hero-stats" style="margin-top: 18px;">
+                <article>
+                  <strong>10+</strong>
+                  <span>Website &amp; Sistem</span>
+                </article>
+                <article>
+                  <strong>10+</strong>
+                  <span>Media &amp; Publikasi</span>
+                </article>
+                <article>
+                  <strong>3+</strong>
+                  <span>Prestasi</span>
+                </article>
               </div>
             </div>
+
+            <!-- Info & Support Content -->
+            <div class="about-info-col">
+              <div class="reveal">
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; align-items: center;">
+                  <span class="eyebrow" style="display: inline-flex; align-items: center; gap: 6px; color: #16a34a; background: rgba(22, 163, 74, 0.10); border-color: rgba(22, 163, 74, 0.25); font-weight: 600; font-size: 0.68rem; padding: 5px 11px;">
+                    <span style="width: 7px; height: 7px; border-radius: 50%; background: #16a34a; display: inline-block;"></span> AVAILABLE FOR PROJECTS
+                  </span>
+                  <span class="eyebrow" style="background: rgba(30, 58, 138, 0.10); color: #1E3A8A; border-color: rgba(30, 58, 138, 0.22); font-size: 0.68rem; padding: 5px 11px;">Graphic Designer &amp; Web Developer</span>
+                </div>
+                <h1 style="font-family: 'Sora', sans-serif; font-size: clamp(2.4rem, 4.5vw, 3.6rem); line-height: 1.1; letter-spacing: -0.04em; margin: 0 0 22px; font-weight: 700;">
+                  <span style="display: block; font-weight: 500; font-size: clamp(1.8rem, 3.5vw, 2.6rem); color: var(--muted); margin-bottom: 4px;">Hi! I am</span>
+                  <span style="color: var(--text);">Dana Riyadi</span>
+                </h1>
+                
+                <!-- 1. What you do / current position & focus -->
+                <p class="hero-lead" style="margin-bottom: 14px; font-size: 1.12rem; line-height: 1.6; color: var(--text); font-weight: 500; max-width: 560px;">
+                  Saat ini berfokus sebagai Web Developer &amp; Graphic Designer, mengembangkan platform web serta menghasilkan karya desain visual yang modern, kreatif, dan profesional.
+                </p>
+                
+                <!-- 2. About your background, experience & vibe -->
+                <p style="color: var(--muted); line-height: 1.75; font-size: 0.98rem; margin: 0 0 24px; max-width: 480px;">
+                  Mengutamakan kualitas, ketelitian, dan inovasi dalam setiap proses untuk menghadirkan solusi digital yang bernilai.
+                </p>
+                
+                <div class="hero-actions" style="margin-top: 0; margin-bottom: 24px;">
+                  <a class="button button-primary" href="#portfolio">Lihat Portfolio</a>
+                  <a class="button button-secondary" href="#contact">Hubungi Saya</a>
+                </div>
+              </div>
+
+              <div class="about-info-cards">
+                <article class="glass-card reveal" style="padding: 22px;">
+                  <h3 style="margin-top: 0; margin-bottom: 8px; font-size: 1.05rem;">Pendidikan</h3>
+                  <p style="margin: 0; font-size: 0.94rem;">Program Studi S1 Ilmu Komputer, Universitas Putra Bangsa, Kebumen, Jawa Tengah.</p>
+                  <div class="tag-list" style="margin-top: 12px;">
+                    <span>2022 – 2026</span>
+                    <span>Fresh Graduate</span>
+                    <span>IPK 3,97</span>
+                  </div>
+                </article>
+
+                <article class="glass-card reveal" style="padding: 22px;">
+                  <h3 style="margin-top: 0; margin-bottom: 8px; font-size: 1.05rem;">Skills &amp; Tools Utama</h3>
+                  <div class="tag-list skill-cloud" style="margin-top: 12px;">
+                    <span>HTML</span><span>CSS</span><span>Next.js</span><span>Antigravity</span><span>Laravel</span><span>WordPress</span>
+                    <span>Figma</span><span>Canva</span><span>CorelDRAW</span><span>Adobe Premiere</span><span>CapCut</span>
+                  </div>
+                </article>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -129,60 +142,6 @@
             <h3>Multimedia dan dokumentasi</h3>
             <p>Saya juga menangani foto, video, serta operator multimedia saat pelaksanaan event dan kegiatan kampus.</p>
           </article>
-        </div>
-      </section>
-
-      <!-- ABOUT -->
-      <section class="section" id="about">
-        <div class="container">
-          <div class="about-landing-grid">
-
-            <!-- Foto -->
-            <div class="about-photo-col reveal">
-              <div class="about-photo-frame">
-                <img src="assets/projects/foto saya.png" alt="Dana Riyadi" class="about-photo" loading="eager">
-                <div class="about-photo-badge">
-                  <span class="section-label">Based in Kebumen, Jawa Tengah</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Info -->
-            <div class="about-info-col">
-              <div class="reveal">
-                <span class="section-label">About Me</span>
-                <h2 style="font-family:'Sora',sans-serif;font-size:clamp(1.6rem,2.8vw,2.2rem);line-height:1.15;letter-spacing:-0.03em;margin:14px 0 18px;">Berangkat dari project kampus, organisasi, dan kebutuhan visual yang nyata.</h2>
-                <p style="color:var(--muted);line-height:1.78;font-size:0.97rem;margin:0 0 24px;">
-                  Saya memiliki ketertarikan kuat pada desain grafis dan web development. Selain mempelajari HTML,
-                  CSS, PHP, Python, C++, dan Java, saya juga sudah memiliki pengalaman membuat website, desain grafis,
-                  serta desain UI/UX. Setiap project saya kerjakan dengan pendekatan yang clean, komunikatif,
-                  dan mudah digunakan agar hasil akhirnya benar-benar siap dipakai.
-                </p>
-              </div>
-
-              <div class="about-info-cards">
-                <article class="glass-card reveal">
-                  <h3>Pendidikan</h3>
-                  <p>S1 Ilmu Komputer, Universitas Putra Bangsa, Kebumen, Jawa Tengah.</p>
-                  <div class="tag-list" style="margin-top:14px;">
-                    <span>Sep 2022 - sekarang</span>
-                    <span>Universitas Putra Bangsa</span>
-                    <span>S1 Ilmu Komputer</span>
-                  </div>
-                </article>
-
-                <article class="glass-card reveal">
-                  <h3>Skills &amp; Tools</h3>
-                  <div class="tag-list skill-cloud" style="margin-top:14px;">
-                    <span>HTML</span><span>CSS</span><span>PHP</span><span>Python</span><span>Laravel</span>
-                    <span>Next.js</span><span>WordPress</span><span>Figma</span><span>Canva</span>
-                    <span>CorelDRAW</span><span>Adobe Premiere</span><span>CapCut</span>
-                  </div>
-                </article>
-              </div>
-            </div>
-
-          </div>
         </div>
       </section>
 
@@ -418,7 +377,7 @@
                   <div class="video-play-btn" aria-hidden="true">
                     <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="26" cy="26" r="26" fill="rgba(255,255,255,0.92)"/>
-                      <path d="M21 18l16 8-16 8V18z" fill="#3B1C08"/>
+                      <path d="M21 18l16 8-16 8V18z" fill="#0F172A"/>
                     </svg>
                   </div>
                   <span class="video-yt-badge">YouTube</span>
@@ -443,7 +402,7 @@
                   <div class="video-play-btn" aria-hidden="true">
                     <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <circle cx="26" cy="26" r="26" fill="rgba(255,255,255,0.92)"/>
-                      <path d="M21 18l16 8-16 8V18z" fill="#3B1C08"/>
+                      <path d="M21 18l16 8-16 8V18z" fill="#0F172A"/>
                     </svg>
                   </div>
                   <span class="video-yt-badge">YouTube</span>
