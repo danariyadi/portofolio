@@ -314,3 +314,311 @@ document.addEventListener("keydown", (event) => {
     closePortfolioModal();
   }
 });
+
+/* ─── Reusable AchievementCard Component ───────────────────────────────────── */
+/**
+ * Generates an Achievement Card HTML string or DOM node.
+ * @param {Object} props
+ * @param {string[]} props.images - Array of image URLs for the carousel (2 images per card)
+ * @param {string} props.badge - Pill badge text floating at top left (e.g. "WEB DEVELOPER")
+ * @param {string} props.category - Category text above title (e.g. "SERTIFIKASI")
+ * @param {string} props.title - Achievement title
+ * @param {string} props.description - Short description
+ * @param {string} [props.certificateLink] - URL for "Lihat Sertifikat"
+ * @param {string} [props.documentationLink] - URL for "Lihat Dokumentasi"
+ * @param {string[]} props.tags - Array of tag strings
+ * @returns {string} HTML string of the AchievementCard component
+ */
+function AchievementCard(props = {}) {
+  const {
+    images = [],
+    badge = "",
+    category = "",
+    title = "",
+    description = "",
+    tags = []
+  } = props;
+
+  const imagesAttr = images.filter(Boolean).join("|");
+  const fallbackImg = images[0] || "";
+  const tagsHtml = tags.map((tag) => `<span>${tag}</span>`).join("");
+
+  return `
+    <article class="project-card reveal">
+      <div class="project-media media-carousel" style="aspect-ratio:1920/912;" data-carousel data-images="${imagesAttr}">
+        <img src="${fallbackImg}" alt="Prestasi - ${title}" loading="lazy" decoding="async">
+        <span class="project-status">${badge}</span>
+      </div>
+      <div class="project-content" style="display:flex;flex-direction:column;">
+        <div class="project-meta"><span>${category}</span></div>
+        <h3>${title}</h3>
+        <p style="flex:1;text-align:justify;text-justify:inter-word;">${description}</p>
+        <div class="project-tags">
+          ${tagsHtml}
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+window.AchievementCard = AchievementCard;
+
+/* ─── PORTFOLIO DOWNLOAD & PASSWORD GATE MODAL ───────────────────────── */
+function togglePortfolioDownloads(e) {
+  if (e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  const wrapper = document.getElementById("portfolioDownloadWrapper");
+  const btn = document.getElementById("experienceToggleBtn");
+  if (!wrapper) return;
+
+  const currentDisplay = window.getComputedStyle(wrapper).display;
+  const isHidden = currentDisplay === "none" || wrapper.hasAttribute("hidden");
+
+  if (isHidden) {
+    wrapper.style.display = "block";
+    wrapper.removeAttribute("hidden");
+    if (btn) btn.classList.add("is-active");
+  } else {
+    wrapper.style.display = "none";
+    wrapper.setAttribute("hidden", "");
+    if (btn) btn.classList.remove("is-active");
+  }
+}
+
+window.togglePortfolioDownloads = togglePortfolioDownloads;
+
+let _globalSelectedVersion = null;
+
+function openPasswordModal(version) {
+  _globalSelectedVersion = version;
+  const pwdModalOverlay = document.getElementById("pwdModalOverlay");
+  const pwdInput = document.getElementById("pwdInput");
+  const pwdErrorMsg = document.getElementById("pwdErrorMsg");
+  const pwdModalVersionName = document.getElementById("pwdModalVersionName");
+
+  if (!pwdModalOverlay) return;
+
+  if (pwdModalVersionName) {
+    pwdModalVersionName.textContent = "";
+  }
+
+  pwdModalOverlay.removeAttribute("hidden");
+  pwdModalOverlay.setAttribute("aria-hidden", "false");
+  if (pwdInput) pwdInput.value = "";
+  if (pwdErrorMsg) {
+    pwdErrorMsg.setAttribute("hidden", "");
+    pwdErrorMsg.textContent = "";
+  }
+
+  setTimeout(() => {
+    if (pwdInput) pwdInput.focus();
+  }, 100);
+}
+
+window.openPasswordModal = openPasswordModal;
+
+function initPortfolioDownload() {
+  const experienceToggleBtn = document.getElementById("experienceToggleBtn");
+  const portfolioDownloadWrapper = document.getElementById("portfolioDownloadWrapper");
+  const btnDownloadVersions = document.querySelectorAll(".btn-download-version");
+
+  const pwdModalOverlay = document.getElementById("pwdModalOverlay");
+  const pwdModalClose = document.getElementById("pwdModalClose");
+  const pwdCancelBtn = document.getElementById("pwdCancelBtn");
+  const pwdModalForm = document.getElementById("pwdModalForm");
+  const pwdInput = document.getElementById("pwdInput");
+  const pwdErrorMsg = document.getElementById("pwdErrorMsg");
+  const pwdSubmitBtn = document.getElementById("pwdSubmitBtn");
+  const pwdModalVersionName = document.getElementById("pwdModalVersionName");
+
+  if (!pwdModalOverlay) return;
+
+  let failedAttempts = 0;
+  let lockoutTimer = null;
+  let lockoutEndTime = 0;
+
+  const TARGET_HASH = "5b4ed33ef2e71b0b80ebac6c2740a63641743d6a432a61b114d3ae59128afa9c";
+
+  const _pdfMap = {
+    webdev: { path: "downloads/7f2a9c-webdev-portfolio.pdf", label: "Web Developer" },
+    desain: { path: "downloads/3d8e1b-desain-portfolio.pdf", label: "Desain Grafis" },
+    umum: { path: "downloads/b91f4a-umum-portfolio.pdf", label: "Umum" }
+  };
+
+  if (experienceToggleBtn && portfolioDownloadWrapper) {
+    experienceToggleBtn.addEventListener("click", togglePortfolioDownloads);
+  }
+
+  // Open modal when any version button is clicked
+  btnDownloadVersions.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const version = btn.getAttribute("data-version");
+      if (!_pdfMap[version]) return;
+      openPasswordModal(version);
+    });
+  });
+
+  function openModal() {
+    pwdModalOverlay.removeAttribute("hidden");
+    pwdModalOverlay.setAttribute("aria-hidden", "false");
+    pwdInput.value = "";
+    hideError();
+
+    // Check if lockout active
+    const now = Date.now();
+    if (now < lockoutEndTime) {
+      startLockoutCountdown(Math.ceil((lockoutEndTime - now) / 1000));
+    } else {
+      enableInputs();
+      setTimeout(() => pwdInput.focus(), 100);
+    }
+  }
+
+  function closeModal() {
+    pwdModalOverlay.setAttribute("hidden", "");
+    pwdModalOverlay.setAttribute("aria-hidden", "true");
+    pwdInput.value = "";
+    hideError();
+  }
+
+  if (pwdModalClose) pwdModalClose.addEventListener("click", closeModal);
+  if (pwdCancelBtn) pwdCancelBtn.addEventListener("click", closeModal);
+
+  pwdModalOverlay.addEventListener("click", (e) => {
+    if (e.target === pwdModalOverlay) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !pwdModalOverlay.hasAttribute("hidden")) {
+      closeModal();
+    }
+  });
+
+  function showError(msg) {
+    if (!pwdErrorMsg) return;
+    pwdErrorMsg.textContent = msg;
+    pwdErrorMsg.removeAttribute("hidden");
+  }
+
+  function hideError() {
+    if (!pwdErrorMsg) return;
+    pwdErrorMsg.setAttribute("hidden", "");
+    pwdErrorMsg.textContent = "";
+  }
+
+  function disableInputs() {
+    pwdInput.disabled = true;
+    pwdSubmitBtn.disabled = true;
+  }
+
+  function enableInputs() {
+    pwdInput.disabled = false;
+    pwdSubmitBtn.disabled = false;
+  }
+
+  function startLockoutCountdown(remainingSeconds) {
+    disableInputs();
+
+    const updateMsg = (secs) => {
+      showError(`Terlalu banyak percobaan, coba lagi sebentar lagi (${secs} detik)`);
+    };
+
+    updateMsg(remainingSeconds);
+
+    if (lockoutTimer) clearInterval(lockoutTimer);
+
+    let currentSecs = remainingSeconds;
+    lockoutTimer = setInterval(() => {
+      currentSecs--;
+      if (currentSecs <= 0) {
+        clearInterval(lockoutTimer);
+        lockoutTimer = null;
+        lockoutEndTime = 0;
+        failedAttempts = 0;
+        enableInputs();
+        hideError();
+        pwdInput.focus();
+      } else {
+        updateMsg(currentSecs);
+      }
+    }, 1000);
+  }
+
+  // SHA-256 Hashing with Web Crypto API
+  async function hashSHA256(text) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(text);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  // Form Submit Handler
+  if (pwdModalForm) {
+    pwdModalForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const now = Date.now();
+      if (now < lockoutEndTime) return;
+
+      const inputVal = pwdInput.value.trim();
+      if (!inputVal) {
+        showError("Password tidak boleh kosong.");
+        return;
+      }
+
+      try {
+        const hashedVal = await hashSHA256(inputVal);
+
+        if (hashedVal === TARGET_HASH) {
+          // Success!
+          failedAttempts = 0;
+
+          // Trigger download
+          const activeVersion = _globalSelectedVersion || "webdev";
+          if (_pdfMap[activeVersion]) {
+            const fileInfo = _pdfMap[activeVersion];
+            const a = document.createElement("a");
+            a.href = fileInfo.path;
+            a.download = fileInfo.path.split("/").pop();
+            a.target = "_blank";
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => {
+              document.body.removeChild(a);
+            }, 100);
+          }
+
+          closeModal();
+        } else {
+          // Failed attempt
+          failedAttempts++;
+
+          if (failedAttempts >= 5) {
+            lockoutEndTime = Date.now() + 30000; // 30s lockout
+            startLockoutCountdown(30);
+          } else {
+            showError(`Password salah! Percobaan tersisa: ${5 - failedAttempts}`);
+            pwdInput.value = "";
+            pwdInput.focus();
+          }
+        }
+      } catch (err) {
+        console.error("Crypto hashing error:", err);
+        showError("Terjadi kesalahan saat memverifikasi password.");
+      }
+    });
+  }
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initPortfolioDownload);
+} else {
+  initPortfolioDownload();
+}
+

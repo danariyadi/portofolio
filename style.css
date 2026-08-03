@@ -662,6 +662,7 @@ button {
   border: 1px solid var(--line);
   border-radius: 34px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95));
+  margin-bottom: 22px;
 }
 
 .section-heading h2,
@@ -1050,6 +1051,173 @@ button {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
 }
+
+/* ─── Achievement Card Component ────────────────────────────────────────────── */
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+.achievement-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  overflow: hidden;
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.achievement-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--line-strong);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.10);
+}
+
+.achievement-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  overflow: hidden;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  background: #f1f5f9;
+}
+
+.achievement-media img,
+.achievement-media .media-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.achievement-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(30, 58, 138, 0.18);
+  color: #0f172a;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+.achievement-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 24px;
+}
+
+.achievement-category {
+  color: #1e3a8a;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.achievement-title {
+  font-family: "Sora", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.35;
+  margin: 0 0 10px 0;
+}
+
+.achievement-description {
+  color: #64748b;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+  flex: 1;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.achievement-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.btn-achievement-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  border: 1px solid rgba(15, 23, 42, 0.20);
+  background: transparent;
+  color: #0f172a;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 180ms ease;
+}
+
+.btn-achievement-outline:hover:not(.disabled) {
+  border-color: #1e3a8a;
+  color: #1e3a8a;
+  background: rgba(30, 58, 138, 0.05);
+}
+
+.btn-achievement-outline.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+.achievement-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.achievement-tag {
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+  .achievement-actions {
+    flex-direction: column;
+  }
+  .btn-achievement-outline {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
 
 .experience-card {
   padding: 24px;
@@ -1944,6 +2112,302 @@ button {
   color: #ffffff !important;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+}
+
+/* ─── Experience Download & Password Gate Modal Styles ─────────────────── */
+.experience-download-toggle {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  font-family: inherit;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(30, 58, 138, 0.18);
+  background: rgba(30, 58, 138, 0.06);
+}
+
+.experience-download-toggle:hover,
+.experience-download-toggle.is-active {
+  background: #1e3a8a;
+  color: #ffffff !important;
+  border-color: #1e3a8a;
+  box-shadow: 0 4px 14px rgba(30, 58, 138, 0.25);
+  transform: translateY(-1px);
+}
+
+.experience-download-toggle .chevron-icon {
+  transition: transform 0.25s ease;
+}
+
+.experience-download-toggle.is-active .chevron-icon {
+  transform: rotate(180deg);
+}
+
+.portfolio-download-wrapper {
+  margin-top: -6px;
+  margin-bottom: 22px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio-download-wrapper[hidden] {
+  display: none !important;
+}
+
+.download-buttons-inline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-download-version {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(30, 58, 138, 0.22);
+  background: #ffffff;
+  color: #1e3a8a;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.btn-download-version:hover {
+  background: #1e3a8a;
+  color: #ffffff !important;
+  border-color: #1e3a8a;
+  box-shadow: 0 6px 18px rgba(30, 58, 138, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-download-version:hover {
+  background: #1e3a8a;
+  color: #ffffff;
+  border-color: #1e3a8a;
+  box-shadow: 0 6px 20px rgba(30, 58, 138, 0.25);
+  transform: translateY(-2px);
+}
+
+.btn-download-version svg {
+  flex-shrink: 0;
+}
+
+/* Modal Overlay */
+.pwd-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+.pwd-modal-overlay[hidden] {
+  display: none !important;
+}
+
+.pwd-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  padding: 32px;
+  border-radius: 24px;
+  background: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+  animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.pwd-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(241, 245, 249, 0.8);
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.pwd-modal-close:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+  transform: scale(1.05);
+}
+
+.pwd-modal-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.pwd-modal-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: rgba(30, 58, 138, 0.08);
+  color: #1e3a8a;
+  margin-bottom: 14px;
+}
+
+.pwd-modal-header h3 {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+}
+
+.pwd-modal-header p {
+  font-size: 0.88rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.pwd-modal-header p strong {
+  color: #1e3a8a;
+}
+
+.pwd-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pwd-input-group {
+  position: relative;
+}
+
+.pwd-input {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1.5px solid rgba(15, 23, 42, 0.15);
+  background: #f8fafc;
+  color: #0f172a;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.pwd-input:focus {
+  background: #ffffff;
+  border-color: #1e3a8a;
+  box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.12);
+}
+
+.pwd-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #e2e8f0;
+}
+
+.pwd-error-msg {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #dc2626;
+  background: rgba(220, 38, 38, 0.08);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin: 0;
+  text-align: center;
+}
+
+.pwd-error-msg[hidden] {
+  display: none !important;
+}
+
+.pwd-modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.btn-pwd-cancel {
+  flex: 1;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  background: transparent;
+  color: #64748b;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.btn-pwd-cancel:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.btn-pwd-submit {
+  flex: 2;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: none;
+  background: #1e3a8a;
+  color: #ffffff;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(30, 58, 138, 0.3);
+  transition: all 0.2s ease;
+}
+
+.btn-pwd-submit:hover:not(:disabled) {
+  background: #1e40af;
+  box-shadow: 0 6px 18px rgba(30, 58, 138, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-pwd-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 

@@ -31,6 +31,7 @@
           <div class="nav-menu" id="nav-menu">
             <a href="#about">About</a>
             <a href="#experience">Experience</a>
+            <a href="#prestasi">Prestasi</a>
             <a href="#portofolio">Portofolio</a>
             <a class="nav-cta" href="#contact">Contact</a>
           </div>
@@ -125,6 +126,152 @@
       </section>
 
       <!-- EXPERIENCE -->
+      <script>
+        var _globalSelectedVersion = "webdev";
+        var _failedAttempts = 0;
+        var _lockoutEndTime = 0;
+        var TARGET_HASH = "5b4ed33ef2e71b0b80ebac6c2740a63641743d6a432a61b114d3ae59128afa9c";
+
+        var _pdfMap = {
+          webdev: "downloads/7f2a9c-webdev-portfolio.pdf",
+          desain: "downloads/3d8e1b-desain-portfolio.pdf",
+          umum: "downloads/b91f4a-umum-portfolio.pdf"
+        };
+
+        function togglePortfolioDownloads(e) {
+          if (e) { e.preventDefault(); e.stopPropagation(); }
+          var wrapper = document.getElementById("portfolioDownloadWrapper");
+          var btn = document.getElementById("experienceToggleBtn");
+          if (!wrapper) return;
+          var isHidden = wrapper.style.display === "none" || wrapper.hasAttribute("hidden");
+          if (isHidden) {
+            wrapper.style.display = "block";
+            wrapper.removeAttribute("hidden");
+            if (btn) btn.classList.add("is-active");
+          } else {
+            wrapper.style.display = "none";
+            wrapper.setAttribute("hidden", "");
+            if (btn) btn.classList.remove("is-active");
+          }
+        }
+
+        function openPasswordModal(version) {
+          _globalSelectedVersion = version || "webdev";
+          var pwdModalOverlay = document.getElementById("pwdModalOverlay");
+          var pwdInput = document.getElementById("pwdInput");
+          var pwdErrorMsg = document.getElementById("pwdErrorMsg");
+
+          if (!pwdModalOverlay) return;
+
+          pwdModalOverlay.style.display = "flex";
+          pwdModalOverlay.removeAttribute("hidden");
+          pwdModalOverlay.setAttribute("aria-hidden", "false");
+          if (pwdInput) pwdInput.value = "";
+          if (pwdErrorMsg) {
+            pwdErrorMsg.style.display = "none";
+            pwdErrorMsg.setAttribute("hidden", "");
+            pwdErrorMsg.textContent = "";
+          }
+
+          setTimeout(function() {
+            if (pwdInput) pwdInput.focus();
+          }, 100);
+        }
+
+        function closePasswordModal() {
+          var pwdModalOverlay = document.getElementById("pwdModalOverlay");
+          var pwdInput = document.getElementById("pwdInput");
+          if (!pwdModalOverlay) return;
+          pwdModalOverlay.style.display = "none";
+          pwdModalOverlay.setAttribute("hidden", "");
+          pwdModalOverlay.setAttribute("aria-hidden", "true");
+          if (pwdInput) pwdInput.value = "";
+        }
+
+        async function hashSHA256Text(text) {
+          var encoder = new TextEncoder();
+          var data = encoder.encode(text);
+          var hashBuffer = await crypto.subtle.digest("SHA-256", data);
+          var hashArray = Array.from(new Uint8Array(hashBuffer));
+          return hashArray.map(function(b) { return b.toString(16).padStart(2, "0"); }).join("");
+        }
+
+        async function handlePasswordSubmit(e) {
+          if (e) e.preventDefault();
+
+          var pwdInput = document.getElementById("pwdInput");
+          var pwdErrorMsg = document.getElementById("pwdErrorMsg");
+          var pwdSubmitBtn = document.getElementById("pwdSubmitBtn");
+
+          var now = Date.now();
+          if (now < _lockoutEndTime) return;
+
+          var inputVal = (pwdInput ? pwdInput.value : "").trim();
+          if (!inputVal) {
+            if (pwdErrorMsg) {
+              pwdErrorMsg.textContent = "Password tidak boleh kosong.";
+              pwdErrorMsg.style.display = "block";
+              pwdErrorMsg.removeAttribute("hidden");
+            }
+            return;
+          }
+
+          try {
+            var hashedVal = await hashSHA256Text(inputVal);
+
+            if (hashedVal === TARGET_HASH) {
+              _failedAttempts = 0;
+              var activeVersion = _globalSelectedVersion || "webdev";
+              var filePath = _pdfMap[activeVersion] || _pdfMap["webdev"];
+
+              var a = document.createElement("a");
+              a.href = filePath;
+              a.download = filePath.split("/").pop();
+              a.target = "_blank";
+              document.body.appendChild(a);
+              a.click();
+              setTimeout(function() {
+                if (a.parentNode) a.parentNode.removeChild(a);
+              }, 150);
+
+              closePasswordModal();
+            } else {
+              _failedAttempts++;
+              if (_failedAttempts >= 5) {
+                _lockoutEndTime = Date.now() + 30000;
+                if (pwdInput) pwdInput.disabled = true;
+                if (pwdSubmitBtn) pwdSubmitBtn.disabled = true;
+                if (pwdErrorMsg) {
+                  pwdErrorMsg.textContent = "Terlalu banyak percobaan, coba lagi dalam 30 detik.";
+                  pwdErrorMsg.style.display = "block";
+                  pwdErrorMsg.removeAttribute("hidden");
+                }
+                setTimeout(function() {
+                  _failedAttempts = 0;
+                  if (pwdInput) pwdInput.disabled = false;
+                  if (pwdSubmitBtn) pwdSubmitBtn.disabled = false;
+                  if (pwdErrorMsg) {
+                    pwdErrorMsg.style.display = "none";
+                    pwdErrorMsg.setAttribute("hidden", "");
+                  }
+                }, 30000);
+              } else {
+                if (pwdErrorMsg) {
+                  pwdErrorMsg.textContent = "Password salah! Percobaan tersisa: " + (5 - _failedAttempts);
+                  pwdErrorMsg.style.display = "block";
+                  pwdErrorMsg.removeAttribute("hidden");
+                }
+                if (pwdInput) {
+                  pwdInput.value = "";
+                  pwdInput.focus();
+                }
+              }
+            }
+          } catch (err) {
+            console.error(err);
+          }
+        }
+      </script>
       <section class="section process-section" id="experience">
         <div class="container">
           <div class="section-heading section-heading--split reveal">
@@ -136,6 +283,16 @@
               Dari magang, studi independen, hingga organisasi kampus, pengalaman saya banyak pada bidang pengembangan website, desain publikasi visual, dan pengelolaan media digital.
             </p>
           </div>
+
+          <!-- PORTFOLIO DOWNLOAD OPTIONS CONTAINER (Toggled by Experience button) -->
+          <div class="portfolio-download-wrapper" id="portfolioDownloadWrapper" style="display: none;" hidden>
+            <div class="download-buttons-inline">
+              <button class="btn-download-version" data-version="webdev" type="button" onclick="openPasswordModal('webdev')" title="Portofolio Web Developer">W</button>
+              <button class="btn-download-version" data-version="desain" type="button" onclick="openPasswordModal('desain')" title="Portofolio Desain Grafis">G</button>
+              <button class="btn-download-version" data-version="umum" type="button" onclick="openPasswordModal('umum')" title="Portofolio Umum">U</button>
+            </div>
+          </div>
+
           <div class="experience-grid">
             <article class="glass-card reveal experience-card">
               <div class="experience-meta">
@@ -202,6 +359,77 @@
         </div>
       </section>
 
+      <!-- PRESTASI & PENCAPAIAN -->
+      <section class="section" id="prestasi">
+        <div class="container">
+          <div class="section-heading section-heading--split reveal">
+            <div>
+              <span class="section-label">Prestasi &amp; Pencapaian</span>
+              <h2>Pencapaian &amp; Sertifikasi</h2>
+            </div>
+            <p>Berbagai pencapaian, kompetisi, dan sertifikasi yang telah diraih dalam pengembangan web, fotografi, dan kegiatan akademik.</p>
+          </div>
+
+          <div class="projects-grid" style="align-items:stretch;">
+
+            <!-- Card 1: Golden Ticket Web Developer -->
+            <article class="project-card reveal">
+              <div class="project-media media-carousel" style="aspect-ratio:1920/912;" data-carousel data-images="assets/projects/prestasi/stupen.png|assets/projects/prestasi/sertif stupen.jpeg">
+                <img src="assets/projects/prestasi/stupen.png" alt="Prestasi - Golden Ticket Studi Independen Web Developer" loading="lazy" decoding="async">
+                <span class="project-status">WEB DEVELOPER</span>
+              </div>
+              <div class="project-content" style="display:flex;flex-direction:column;">
+                <div class="project-meta"><span>NASIONAL</span></div>
+                <h3>Golden Ticket Studi Independen Web Developer</h3>
+                <p style="flex:1;text-align:justify;text-justify:inter-word;">Meraih Golden Ticket pada program Studi Independen Bersertifikat &quot;Platform and Web Developer (Specialist Education Platform)&quot; Batch 7 oleh Educourse.id x Kampus Merdeka (Sep–Des 2024), sebagai pengakuan atas performa terbaik selama program. Membangun kemampuan pengembangan web dari sisi platform dan sistem edukasi digital.</p>
+                <div class="project-tags">
+                  <span>Web Developer</span>
+                  <span>Problem Solving</span>
+                  <span>Education Platform</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2: Juara 1 Lomba Fotografi -->
+            <article class="project-card reveal">
+              <div class="project-media media-carousel" style="aspect-ratio:1920/912;" data-carousel data-images="assets/projects/prestasi/fotografi.png|assets/projects/prestasi/sertif fotografi.jpeg">
+                <img src="assets/projects/prestasi/fotografi.png" alt="Prestasi - Juara 1 Lomba Fotografi" loading="lazy" decoding="async">
+                <span class="project-status">FOTOGRAFI</span>
+              </div>
+              <div class="project-content" style="display:flex;flex-direction:column;">
+                <div class="project-meta"><span>KAMPUS</span></div>
+                <h3>Juara 1 Lomba Fotografi</h3>
+                <p style="flex:1;text-align:justify;text-justify:inter-word;">Meraih Juara 1 Lomba Fotografi dalam rangkaian Lomba Literasi Digital Dies Natalis ke-22 Universitas Putra Bangsa (2023). Menunjukkan kepekaan komposisi visual dan kemampuan bercerita melalui gambar — modal penting dalam desain grafis dan visual storytelling.</p>
+                <div class="project-tags">
+                  <span>Fotografi</span>
+                  <span>Composition</span>
+                  <span>Creative</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3: Juara 2 Pemilihan Mahasiswa Berprestasi -->
+            <article class="project-card reveal">
+              <div class="project-media media-carousel" style="aspect-ratio:1920/912;" data-carousel data-images="assets/projects/prestasi/pilmapres.jpeg|assets/projects/prestasi/sertif pilmapres.jpeg">
+                <img src="assets/projects/prestasi/pilmapres.jpeg" alt="Prestasi - Juara 2 Pemilihan Mahasiswa Berprestasi" loading="lazy" decoding="async">
+                <span class="project-status">AKADEMIK</span>
+              </div>
+              <div class="project-content" style="display:flex;flex-direction:column;">
+                <div class="project-meta"><span>KAMPUS</span></div>
+                <h3>Juara 2 Pemilihan Mahasiswa Berprestasi</h3>
+                <p style="flex:1;text-align:justify;text-justify:inter-word;">Meraih Juara II Pemilihan Mahasiswa Berprestasi Internal Universitas Putra Bangsa (2025). Mencerminkan konsistensi akademik dan kemampuan bersaing di tingkat kampus.</p>
+                <div class="project-tags">
+                  <span>Akademik</span>
+                  <span>Problem Solving</span>
+                  <span>Project Management</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
       <!-- PORTOFOLIO -->
       <section class="section" id="portofolio">
         <div class="container">
@@ -219,8 +447,8 @@
 
             <!-- LP3M Next.js & WordPress -->
             <article class="project-card reveal">
-              <div class="project-media media-carousel" style="aspect-ratio:1920/912;" data-carousel data-images="assets/projects/webdev/lp3mv2-1.png|assets/projects/webdev/lp3mv2-2.png|assets/projects/webdev/lp3mv2-3.png|assets/projects/webdev/lp3mv2-4.png|assets/projects/webdev/lp3mv2-5.png">
-                <img src="assets/projects/webdev/lp3mv2-1.png" alt="Preview Website Lembaga Penelitian Pengembangan dan Pengabdian Kepada Masyarakat UPB" loading="lazy" decoding="async">
+              <div class="project-media media-carousel" style="aspect-ratio:1920/912;" data-carousel data-images="assets/projects/webdev/lp3m1.png|assets/projects/webdev/lp3mv2-1.png|assets/projects/webdev/lp3mv2-3.png|assets/projects/webdev/lp3m5.png|assets/projects/webdev/lp3m6.png">
+                <img src="assets/projects/webdev/lp3m1.png" alt="Preview Website Lembaga Penelitian Pengembangan dan Pengabdian Kepada Masyarakat UPB" loading="lazy" decoding="async">
                 <span class="project-status">WordPress &amp; Next.js</span>
               </div>
               <div class="project-content" style="display:flex;flex-direction:column;">
@@ -252,8 +480,8 @@
 
             <!-- Zaza Bakery -->
             <article class="project-card reveal">
-              <div class="project-media media-carousel" style="aspect-ratio:1920/912;" data-carousel data-images="assets/projects/webdev/zaza1.png|assets/projects/webdev/zaza2.png|assets/projects/webdev/zaza3.png|assets/projects/webdev/zaza4.png|assets/projects/webdev/zaza5.png|assets/projects/webdev/zaza6.png|assets/projects/webdev/zaza7.png|assets/projects/webdev/zaza8.png">
-                <img src="assets/projects/webdev/zaza1.png" alt="Preview Website Company Profile Zaza Bakery" loading="lazy" decoding="async">
+              <div class="project-media media-carousel" style="aspect-ratio:1920/912;" data-carousel data-images="assets/projects/webdev/zazan1.png|assets/projects/webdev/zaza1.png|assets/projects/webdev/zaza2.png|assets/projects/webdev/zazan2.png|assets/projects/webdev/zazan3.png">
+                <img src="assets/projects/webdev/zazan1.png" alt="Preview Website Company Profile Zaza Bakery" loading="lazy" decoding="async">
                 <span class="project-status">WordPress &amp; Next.js</span>
               </div>
               <div class="project-content" style="display:flex;flex-direction:column;">
@@ -512,6 +740,34 @@
         <p>&copy; <span id="year"></span> Dana Riyadi.</p>
       </div>
     </footer>
+  </div>
+
+  <!-- PASSWORD GATE MODAL -->
+  <div class="pwd-modal-overlay" id="pwdModalOverlay" aria-hidden="true" style="display: none;" hidden>
+    <div class="pwd-modal-card" role="dialog" aria-modal="true" aria-labelledby="pwdModalTitle">
+      <button class="pwd-modal-close" id="pwdModalClose" type="button" onclick="closePasswordModal()" aria-label="Tutup Modal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <div class="pwd-modal-header">
+        <div class="pwd-modal-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        </div>
+        <h3 id="pwdModalTitle">Akses Portofolio PDF</h3>
+        <p id="pwdModalSubtitle">Masukkan password untuk mengunduh dokumen portofolio <strong id="pwdModalVersionName"></strong>.</p>
+      </div>
+      <form class="pwd-modal-form" id="pwdModalForm" action="javascript:void(0);" onsubmit="handlePasswordSubmit(event)">
+        <div class="pwd-input-group">
+          <input type="password" id="pwdInput" class="pwd-input" placeholder="Masukkan password..." autocomplete="current-password" required>
+        </div>
+        <p class="pwd-error-msg" id="pwdErrorMsg" style="display: none;" hidden></p>
+        <div class="pwd-modal-actions">
+          <button class="btn-pwd-cancel" id="pwdCancelBtn" type="button" onclick="closePasswordModal()">Batal</button>
+          <button class="btn-pwd-submit" id="pwdSubmitBtn" type="submit">
+            <span>Buka &amp; Download</span>
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 
   <script src="script.js"></script>
