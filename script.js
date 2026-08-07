@@ -390,7 +390,23 @@ function togglePortfolioDownloads(e) {
 
 window.togglePortfolioDownloads = togglePortfolioDownloads;
 
-let _globalSelectedVersion = null;
+var _globalSelectedVersion = null;
+
+function closePasswordModal() {
+  const pwdModalOverlay = document.getElementById("pwdModalOverlay");
+  const pwdInput = document.getElementById("pwdInput");
+  const pwdErrorMsg = document.getElementById("pwdErrorMsg");
+  if (!pwdModalOverlay) return;
+  pwdModalOverlay.setAttribute("hidden", "");
+  pwdModalOverlay.setAttribute("aria-hidden", "true");
+  if (pwdInput) pwdInput.value = "";
+  if (pwdErrorMsg) {
+    pwdErrorMsg.setAttribute("hidden", "");
+    pwdErrorMsg.textContent = "";
+  }
+}
+
+window.closePasswordModal = closePasswordModal;
 
 function openPasswordModal(version) {
   _globalSelectedVersion = version;
