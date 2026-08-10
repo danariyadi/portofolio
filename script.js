@@ -184,35 +184,100 @@ const setActiveLinkByPage = () => {
   });
 };
 
-const setActiveLinkBySection = () => {
-  let currentSection = sections[0]?.id || "home";
+// Map section id → URL slug (untuk sub-bagian portofolio pakai slug sendiri)
+const SECTION_SLUG_MAP = {
+  about:          'about',
+  experience:     'experience',
+  prestasi:       'prestasi',
+  portofolio:     'portofolio',
+  contact:        'contact',
+  'section-webdev': 'webdev',
+  'section-desain': 'desain',
+  'section-video':  'video',
+};
 
+// Sub-bagian portofolio yang punya slug sendiri
+const portfolioSubSections = ['section-webdev', 'section-desain', 'section-video']
+  .map(id => document.getElementById(id))
+  .filter(Boolean);
+
+let _lastSlug = null;
+
+const updateUrlSlug = (slug) => {
+  if (!slug || slug === _lastSlug) return;
+  _lastSlug = slug;
+  const hash = '#' + slug;
+  // Gunakan replaceState agar tidak menumpuk history browser
+  history.replaceState(null, '', hash);
+};
+
+const setActiveLinkBySection = () => {
+  let currentSection = sections[0]?.id || 'about';
+  const scrollMid = window.scrollY + 140;
+
+  // Cek main sections dulu
   sections.forEach((section) => {
     const top = section.offsetTop - 140;
     const bottom = top + section.offsetHeight;
-
     if (window.scrollY >= top && window.scrollY < bottom) {
       currentSection = section.id;
     }
   });
 
+  // Jika sedang di section portofolio, cek sub-bagian mana yang aktif
+  let activeSlug = SECTION_SLUG_MAP[currentSection] || currentSection;
+  if (currentSection === 'portofolio') {
+    let activeSubId = null;
+    portfolioSubSections.forEach(el => {
+      const top = el.getBoundingClientRect().top + window.scrollY - 160;
+      if (window.scrollY >= top) {
+        activeSubId = el.id;
+      }
+    });
+    if (activeSubId && SECTION_SLUG_MAP[activeSubId]) {
+      activeSlug = SECTION_SLUG_MAP[activeSubId];
+    }
+  }
+
+  updateUrlSlug(activeSlug);
+
   navLinks.forEach((link) => {
-    const isActive = link.getAttribute("href") === `#${currentSection}`;
-    link.classList.toggle("active", isActive);
+    const isActive = link.getAttribute('href') === `#${currentSection}`;
+    link.classList.toggle('active', isActive);
   });
 };
 
 const onScroll = () => {
-  header?.classList.toggle("scrolled", window.scrollY > 18);
-  if (navLinks.some((link) => link.getAttribute("href")?.startsWith("#"))) {
+  header?.classList.toggle('scrolled', window.scrollY > 18);
+  if (navLinks.some((link) => link.getAttribute('href')?.startsWith('#'))) {
     setActiveLinkBySection();
   } else {
     setActiveLinkByPage();
   }
 };
 
-window.addEventListener("scroll", onScroll, { passive: true });
-window.addEventListener("load", onScroll);
+// Scroll ke section yang sesuai hash saat halaman pertama dibuka
+const scrollToHashOnLoad = () => {
+  const hash = window.location.hash.replace('#', '');
+  if (!hash) return;
+
+  // Cari elemen berdasarkan slug atau id langsung
+  const reverseMap = Object.fromEntries(
+    Object.entries(SECTION_SLUG_MAP).map(([id, slug]) => [slug, id])
+  );
+  const targetId = reverseMap[hash] || hash;
+  const target = document.getElementById(targetId);
+  if (!target) return;
+
+  setTimeout(() => {
+    const headerH = header ? header.offsetHeight : 72;
+    const top = target.getBoundingClientRect().top + window.scrollY - headerH - 16;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }, 200);
+};
+
+window.addEventListener('scroll', onScroll, { passive: true });
+window.addEventListener('load', () => { onScroll(); scrollToHashOnLoad(); });
 setActiveLinkByPage();
 
 document.addEventListener("pointermove", (event) => {
