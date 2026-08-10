@@ -638,3 +638,56 @@ if (document.readyState === "loading") {
   initPortfolioDownload();
 }
 
+/* ── PORTFOLIO FILTER TAB NAVIGATION ─────────────────────── */
+function scrollToPortfolioSection(sectionId) {
+  const target = document.getElementById(sectionId);
+  if (!target) return;
+
+  const headerEl = document.querySelector('.site-header');
+  const headerH = headerEl ? headerEl.offsetHeight : 72;
+  const offset = 24; // extra breathing room
+  const top = target.getBoundingClientRect().top + window.scrollY - headerH - offset;
+
+  window.scrollTo({ top, behavior: 'smooth' });
+  setActivePortfolioTab(sectionId);
+}
+
+function setActivePortfolioTab(sectionId) {
+  const map = {
+    'section-webdev': 'tab-webdev',
+    'section-desain': 'tab-desain',
+    'section-video':  'tab-video',
+  };
+  document.querySelectorAll('.pf-tab').forEach(btn => btn.classList.remove('pf-tab--active'));
+  const activeId = map[sectionId];
+  if (activeId) {
+    const activeBtn = document.getElementById(activeId);
+    if (activeBtn) activeBtn.classList.add('pf-tab--active');
+  }
+}
+
+// Update active tab automatically on scroll
+(function () {
+  const sectionIds = ['section-webdev', 'section-desain', 'section-video'];
+  const tabObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setActivePortfolioTab(entry.target.id);
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+
+  function initTabObserver() {
+    sectionIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) tabObserver.observe(el);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTabObserver);
+  } else {
+    initTabObserver();
+  }
+})();
+/* ─────────────────────────────────────────────────────────── */

@@ -347,6 +347,88 @@ button {
   color: var(--text);
 }
 
+/* ─── PORTFOLIO FILTER TABS ──────────────────────────────── */
+.portfolio-filter-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  margin-top: 8px;
+  padding: 6px;
+  background: rgba(29, 78, 216, 0.05);
+  border: 1.5px solid rgba(29, 78, 216, 0.12);
+  border-radius: 16px;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.pf-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 10px;
+  border: 1.5px solid transparent;
+  background: transparent;
+  color: var(--muted, #64748b);
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.pf-tab svg {
+  transition: stroke 200ms ease, transform 200ms ease;
+  flex-shrink: 0;
+}
+
+.pf-tab:hover {
+  background: rgba(29, 78, 216, 0.08);
+  color: #1d4ed8;
+  border-color: rgba(29, 78, 216, 0.2);
+  transform: translateY(-1px);
+}
+
+.pf-tab:hover svg {
+  stroke: #1d4ed8;
+}
+
+.pf-tab--active,
+.pf-tab.pf-tab--active {
+  background: #1d4ed8;
+  color: #ffffff;
+  border-color: #1d4ed8;
+  box-shadow: 0 4px 14px rgba(29, 78, 216, 0.30);
+}
+
+.pf-tab--active svg,
+.pf-tab.pf-tab--active svg {
+  stroke: #ffffff;
+}
+
+.pf-tab--active:hover {
+  background: #1e40af;
+  border-color: #1e40af;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(29, 78, 216, 0.38);
+}
+
+@media (max-width: 480px) {
+  .portfolio-filter-tabs {
+    gap: 6px;
+    padding: 5px;
+  }
+  .pf-tab {
+    padding: 9px 16px;
+    font-size: 0.87rem;
+    gap: 6px;
+  }
+}
+/* ─────────────────────────────────────────────────────────── */
+
 .button-see-more,
 .button-project-link {
   display: flex !important;
