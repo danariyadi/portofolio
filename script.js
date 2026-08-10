@@ -202,13 +202,14 @@ const portfolioSubSections = ['section-webdev', 'section-desain', 'section-video
   .filter(Boolean);
 
 let _lastSlug = null;
+// Bekukan update URL jika ada hash awal di URL (supaya tidak langsung ditimpa #about)
+let _slugFrozen = !!window.location.hash;
 
 const updateUrlSlug = (slug) => {
+  if (_slugFrozen) return;           // tahan dulu saat scroll awal
   if (!slug || slug === _lastSlug) return;
   _lastSlug = slug;
-  const hash = '#' + slug;
-  // Gunakan replaceState agar tidak menumpuk history browser
-  history.replaceState(null, '', hash);
+  history.replaceState(null, '', '#' + slug);
 };
 
 const setActiveLinkBySection = () => {
@@ -259,7 +260,10 @@ const onScroll = () => {
 // Scroll ke section yang sesuai hash saat halaman pertama dibuka
 const scrollToHashOnLoad = () => {
   const hash = window.location.hash.replace('#', '');
-  if (!hash) return;
+  if (!hash) {
+    _slugFrozen = false; // tidak ada hash awal, langsung aktifkan
+    return;
+  }
 
   // Cari elemen berdasarkan slug atau id langsung
   const reverseMap = Object.fromEntries(
@@ -267,13 +271,22 @@ const scrollToHashOnLoad = () => {
   );
   const targetId = reverseMap[hash] || hash;
   const target = document.getElementById(targetId);
-  if (!target) return;
+  if (!target) {
+    _slugFrozen = false;
+    return;
+  }
+
+  // Simpan slug target agar URL tetap benar
+  _lastSlug = hash;
 
   setTimeout(() => {
     const headerH = header ? header.offsetHeight : 72;
     const top = target.getBoundingClientRect().top + window.scrollY - headerH - 16;
     window.scrollTo({ top, behavior: 'smooth' });
-  }, 200);
+
+    // Aktifkan update URL lagi setelah animasi scroll selesai (~1.1 detik)
+    setTimeout(() => { _slugFrozen = false; }, 1100);
+  }, 150);
 };
 
 window.addEventListener('scroll', onScroll, { passive: true });
