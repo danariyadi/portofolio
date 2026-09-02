@@ -38,9 +38,10 @@ body {
   line-height: 1.65;
   color: var(--text);
   background:
-    radial-gradient(circle at var(--pointer-x, 20%) var(--pointer-y, 0%), rgba(30, 58, 138, 0.06), transparent 28%),
-    radial-gradient(circle at 84% 16%, rgba(15, 23, 42, 0.04), transparent 18%),
-    linear-gradient(180deg, #ffffff 0%, #f8fafc 45%, #f1f5f9 100%);
+    radial-gradient(circle at var(--pointer-x, 20%) var(--pointer-y, 0%), rgba(37, 99, 235, 0.12), transparent 26%),
+    radial-gradient(circle at 84% 16%, rgba(14, 165, 233, 0.10), transparent 20%),
+    linear-gradient(145deg, #ffffff 0%, #f4f8ff 46%, #eef4ff 100%);
+  background-attachment: fixed;
 }
 
 h1,
@@ -62,14 +63,35 @@ li {
 body::before {
   content: "";
   position: fixed;
-  inset: 0;
+  inset: -88px;
+  z-index: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
-  background-size: 88px 88px;
+    linear-gradient(rgba(30, 58, 138, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 58, 138, 0.045) 1px, transparent 1px);
+  background-position: 0 0;
+  background-size: 72px 72px;
+  -webkit-mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.95), transparent 82%);
   mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.95), transparent 82%);
-  opacity: 0.6;
+  opacity: 0.72;
+  animation: background-grid-drift 26s linear infinite;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: -22vmax;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 28%, rgba(37, 99, 235, 0.18) 0 5%, transparent 23%),
+    radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.14) 0 4%, transparent 21%),
+    radial-gradient(circle at 72% 78%, rgba(99, 102, 241, 0.13) 0 5%, transparent 23%),
+    radial-gradient(circle at 28% 82%, rgba(6, 182, 212, 0.10) 0 4%, transparent 20%);
+  filter: blur(38px);
+  opacity: 0.85;
+  transform-origin: center;
+  animation: ambient-orbit 22s ease-in-out infinite alternate;
 }
 
 img {
@@ -94,7 +116,51 @@ button {
 
 .page-shell {
   position: relative;
+  z-index: 1;
   isolation: isolate;
+}
+
+.page-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, rgba(30, 64, 175, 0.22) 0 1px, transparent 1.6px),
+    radial-gradient(circle, rgba(14, 165, 233, 0.16) 0 1px, transparent 1.6px);
+  background-position: 0 0, 34px 52px;
+  background-size: 96px 96px, 128px 128px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent);
+  opacity: 0.34;
+  animation: particles-float 32s linear infinite;
+}
+
+@keyframes background-grid-drift {
+  to {
+    background-position: 72px 72px;
+  }
+}
+
+@keyframes ambient-orbit {
+  0% {
+    transform: translate3d(-2%, -1%, 0) rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: translate3d(3%, 2%, 0) rotate(5deg) scale(1.06);
+  }
+
+  100% {
+    transform: translate3d(-1%, 4%, 0) rotate(-3deg) scale(0.98);
+  }
+}
+
+@keyframes particles-float {
+  to {
+    background-position: 48px -96px, -30px -76px;
+  }
 }
 
 .container {
@@ -193,10 +259,18 @@ button {
   background: rgba(30, 58, 138, 0.08);
 }
 
-.nav-cta {
+.nav-menu a.nav-cta,
+.nav-menu a.nav-cta:hover,
+.nav-menu a.nav-cta.active {
   border: 1px solid rgba(15, 23, 42, 0.2);
   color: #ffffff !important;
   background: linear-gradient(135deg, #0F172A, #1E3A8A);
+}
+
+.nav-menu a.nav-cta:hover,
+.nav-menu a.nav-cta.active {
+  border-color: rgba(30, 58, 138, 0.5);
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.18);
 }
 
 .menu-toggle {
@@ -500,8 +574,10 @@ button {
 .process-card {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.93), rgba(248, 250, 252, 0.87));
   box-shadow: var(--shadow);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
 }
 
 .hero-stats article {
@@ -528,10 +604,12 @@ button {
   border: 1px solid rgba(15, 23, 42, 0.10);
   border-radius: 34px;
   background:
-    linear-gradient(160deg, rgba(255, 255, 255, 0.99), rgba(248, 250, 252, 0.97)),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.94), rgba(248, 250, 252, 0.89)),
     radial-gradient(circle at top right, rgba(30, 58, 138, 0.06), transparent 26%);
   overflow: hidden;
   box-shadow: 0 28px 90px rgba(15, 23, 42, 0.08);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
 }
 
 .hero-panel__blur {
@@ -743,8 +821,10 @@ button {
   padding: 28px 26px;
   border: 1px solid var(--line);
   border-radius: 34px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.93), rgba(248, 250, 252, 0.87));
   margin-bottom: 22px;
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
 }
 
 .section-heading h2,
@@ -1425,10 +1505,12 @@ button {
   border: 1px solid rgba(15, 23, 42, 0.10);
   border-radius: 36px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(248, 250, 252, 0.97)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 250, 252, 0.89)),
     radial-gradient(circle at top right, rgba(30, 58, 138, 0.06), transparent 24%);
   overflow: hidden;
   box-shadow: 0 24px 90px rgba(15, 23, 42, 0.08);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
 }
 
 .contact-list {
@@ -2175,25 +2257,25 @@ button {
   }
 }
 
-/* ─── WhatsApp Button Styles ─────────────────────────────────────────────── */
-.button-wa {
-  background: #25d366 !important;
+/* ─── Instagram Button Styles ───────────────────────────────────────────── */
+.button-instagram {
+  background: linear-gradient(135deg, #833ab4, #c13584 48%, #e1306c) !important;
   color: #ffffff !important;
-  border-color: #25d366 !important;
+  border-color: rgba(193, 53, 132, 0.6) !important;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+  box-shadow: 0 4px 16px rgba(193, 53, 132, 0.28);
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
-.button-wa:hover {
-  background: #20ba5a !important;
-  border-color: #20ba5a !important;
+.button-instagram:hover {
+  background: linear-gradient(135deg, #6f2da8, #ad2f7b 48%, #d62976) !important;
+  border-color: rgba(193, 53, 132, 0.8) !important;
   color: #ffffff !important;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+  box-shadow: 0 7px 22px rgba(193, 53, 132, 0.38);
 }
 
 /* ─── Experience Download & Password Gate Modal Styles ─────────────────── */

@@ -135,7 +135,7 @@ def create_webdev_pdf(filepath):
           "",
           "Kontak & Informasi:",
           "- Email: danariyadi111@gmail.com",
-          "- WhatsApp: +62 882-2131-9983",
+          "- Instagram: @dana.ry__",
           "- Lokasi: Kebumen, Jawa Tengah",
           "- Portfolio Website: danariyadi.github.io"
         ]
