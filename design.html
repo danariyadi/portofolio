@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20260904-25">
 </head>
 <body>
   <div class="page-shell">
@@ -18,7 +18,13 @@
       <section class="section page-hero">
         <div class="container">
           <div class="section-heading section-heading--split reveal">
-            <div><span class="section-label">Graphic Design</span><h1>Desain publikasi, media sosial, poster, banner, dan visual event.</h1></div>
+            <div>
+              <div class="section-label-row">
+                <span class="section-label">Graphic Design</span>
+                <span class="section-count-badge" data-carousel-count data-carousel-count-for="design-gallery" data-count-label="Desain">122 Desain</span>
+              </div>
+              <h1>Desain publikasi, media sosial, poster, banner, dan visual event.</h1>
+            </div>
             <p>Halaman ini disiapkan sebagai gallery desain yang bisa ditambah project baru kapan saja.</p>
           </div>
           <div class="filter-bar reveal" role="tablist" aria-label="Filter desain grafis">
@@ -30,12 +36,12 @@
             <button class="filter-button" type="button" data-filter="lainnya">Lainnya</button>
           </div>
 
-          <div class="projects-grid design-grid" id="design-gallery"></div>
+          <div class="projects-grid design-grid horizontal-auto-carousel portfolio-design-carousel" id="design-gallery" data-horizontal-carousel data-carousel-items-desktop="3" data-scroll-step-desktop="3" data-carousel-animation="smooth" aria-label="Daftar desain grafis"></div>
         </div>
       </section>
     </main>
     <footer class="site-footer"><div class="container footer-content"><p>Portofolio Dana Riyadi - Graphic Design and Web Developer.</p><p>&copy; <span id="year"></span> Dana Riyadi.</p></div></footer>
   </div>
-  <script src="script.js"></script>
+  <script src="script.js?v=20260904-25"></script>
 </body>
 </html>

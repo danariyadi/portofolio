@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20260904-25">
 </head>
 <body>
   <div class="page-shell">
@@ -54,20 +54,6 @@
                   <span class="section-label" style="color: #ffffff; border-color: rgba(255,255,255,0.35); background: rgba(15,23,42,0.45); backdrop-filter: blur(8px);">Based in Kebumen, Jawa Tengah</span>
                 </div>
               </div>
-              <div class="hero-stats" style="margin-top: 18px;">
-                <article>
-                  <strong>10+</strong>
-                  <span>Website &amp; Sistem</span>
-                </article>
-                <article>
-                  <strong>10+</strong>
-                  <span>Media &amp; Publikasi</span>
-                </article>
-                <article>
-                  <strong>3+</strong>
-                  <span>Prestasi</span>
-                </article>
-              </div>
             </div>
 
             <!-- Info & Support Content -->
@@ -89,11 +75,6 @@
                   Saat ini berfokus sebagai Web Developer &amp; Graphic Designer, mengembangkan platform web serta menghasilkan karya desain visual yang modern, kreatif, dan profesional.
                 </p>
                 
-                <!-- 2. About your background, experience & vibe -->
-                <p style="color: var(--muted); line-height: 1.75; font-size: 0.98rem; margin: 0 0 24px; max-width: 480px;">
-                  Mengutamakan kualitas, ketelitian, dan inovasi dalam setiap proses untuk menghadirkan solusi digital yang bernilai.
-                </p>
-                
                 <div class="hero-actions" style="margin-top: 0; margin-bottom: 24px;">
                   <a class="button button-primary" href="#portofolio">Lihat Portofolio</a>
                   <a class="button button-secondary" href="#contact">Hubungi Saya</a>
@@ -110,18 +91,24 @@
                     <span>IPK 3,97</span>
                   </div>
                 </article>
-
-                <article class="glass-card reveal" style="padding: 22px;">
-                  <h3 style="margin-top: 0; margin-bottom: 8px; font-size: 1.05rem;">Skills &amp; Tools Utama</h3>
-                  <div class="tag-list skill-cloud" style="margin-top: 12px;">
-                    <span>HTML</span><span>CSS</span><span>Next.js</span><span>Antigravity</span><span>Laravel</span><span>WordPress</span>
-                    <span>Figma</span><span>Canva</span><span>CorelDRAW</span><span>Adobe Premiere</span><span>CapCut</span>
-                  </div>
-                </article>
               </div>
             </div>
 
           </div>
+        </div>
+      </section>
+
+      <!-- SKILLS & TOOLS UTAMA -->
+      <section class="section" id="skills">
+        <div class="container">
+          <article class="glass-card reveal tools-card skills-summary-card">
+            <span class="section-label">Skills &amp; Tools Utama</span>
+            <h2>Tools utama yang sering saya pakai</h2>
+            <div class="tag-list skill-cloud">
+              <span>HTML</span><span>CSS</span><span>Next.js</span><span>Antigravity</span><span>Laravel</span><span>WordPress</span>
+              <span>Figma</span><span>Canva</span><span>CorelDRAW</span><span>Adobe Premiere</span><span>CapCut</span>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -131,7 +118,10 @@
         <div class="container">
           <div class="section-heading section-heading--split reveal">
             <div>
-              <span class="section-label">Experience</span>
+              <div class="section-label-row">
+                <span class="section-label">Experience</span>
+                <span class="section-count-badge" data-carousel-count data-count-label="Pengalaman">4 Pengalaman</span>
+              </div>
               <h2>Pengalaman yang mengasah keahlian saya</h2>
             </div>
             <p>
@@ -148,7 +138,7 @@
             </div>
           </div>
 
-          <div class="experience-grid">
+          <div class="experience-grid horizontal-auto-carousel" data-horizontal-carousel aria-label="Daftar pengalaman">
             <article class="glass-card reveal experience-card">
               <div class="experience-meta">
                 <span>Sep 2025 – Jan 2026</span>
@@ -219,13 +209,16 @@
         <div class="container">
           <div class="section-heading section-heading--split reveal">
             <div>
-              <span class="section-label">Prestasi &amp; Pencapaian</span>
+              <div class="section-label-row">
+                <span class="section-label">Prestasi &amp; Pencapaian</span>
+                <span class="section-count-badge" data-carousel-count data-count-label="Prestasi">3 Prestasi</span>
+              </div>
               <h2>Pencapaian &amp; Sertifikasi</h2>
             </div>
             <p>Berbagai pencapaian, kompetisi, dan sertifikasi yang telah diraih dalam pengembangan web, fotografi, dan kegiatan akademik.</p>
           </div>
 
-          <div class="projects-grid" style="align-items:stretch;">
+          <div class="projects-grid horizontal-auto-carousel" data-horizontal-carousel aria-label="Daftar prestasi dan pencapaian">
 
             <!-- Card 1: Golden Ticket Web Developer -->
             <article class="project-card reveal">
@@ -298,23 +291,17 @@
 
           <!-- PORTFOLIO FILTER TABS -->
           <div class="portfolio-filter-tabs reveal" id="portfolio-filter-tabs">
-            <button class="pf-tab pf-tab--active" onclick="scrollToPortfolioSection('section-webdev')" id="tab-webdev" type="button">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><polyline points="9 9 12 6 15 9"/><line x1="12" y1="6" x2="12" y2="18"/></svg>
-              Web Dev
-            </button>
-            <button class="pf-tab" onclick="scrollToPortfolioSection('section-desain')" id="tab-desain" type="button">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-              Desain
-            </button>
-            <button class="pf-tab" onclick="scrollToPortfolioSection('section-video')" id="tab-video" type="button">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-              Video
-            </button>
+            <button class="pf-tab pf-tab--active" onclick="scrollToPortfolioSection('section-webdev')" id="tab-webdev" type="button">Web Dev</button>
+            <button class="pf-tab" onclick="scrollToPortfolioSection('section-desain')" id="tab-desain" type="button">Desain</button>
+            <button class="pf-tab" onclick="scrollToPortfolioSection('section-video')" id="tab-video" type="button">Video</button>
           </div>
 
           <!-- WEB DEV -->
-          <h2 class="portfolio-category-heading reveal" id="section-webdev">Web Development</h2>
-          <div class="projects-grid" style="align-items:stretch;">
+          <div class="portfolio-category-title-row reveal">
+            <h2 class="portfolio-category-heading" id="section-webdev">Web Development</h2>
+            <span class="section-count-badge" data-carousel-count data-carousel-count-for="portfolio-webdev-carousel" data-count-label="Website">6 Website</span>
+          </div>
+          <div class="projects-grid horizontal-auto-carousel portfolio-web-carousel" id="portfolio-webdev-carousel" data-horizontal-carousel aria-label="Daftar project website" style="align-items:stretch;">
 
             <!-- LP3M Next.js & WordPress -->
             <article class="project-card reveal">
@@ -409,15 +396,11 @@
 
           </div>
 
-          <!-- BUTTON SUB-SECTION WEB DEV -->
-          <div style="margin-top: 24px; margin-bottom: 48px;" class="reveal">
-            <a class="button button-see-more" href="portofolio.html?filter=web">
-              <span>Lihat lebih banyak website</span>
-            </a>
-          </div>
-
           <!-- GRAPHIC DESIGN -->
-          <h2 class="portfolio-category-heading reveal" id="section-desain">Graphic Design</h2>
+          <div class="portfolio-category-title-row reveal">
+            <h2 class="portfolio-category-heading" id="section-desain">Graphic Design</h2>
+            <span class="section-count-badge" data-carousel-count data-carousel-count-for="portfolio-design-carousel" data-count-label="Desain">9 Desain</span>
+          </div>
           <p class="reveal" style="text-align:justify;text-justify:inter-word;margin-top:8px;margin-bottom:16px;color:var(--text-muted);font-size:0.98rem;line-height:1.65;">Koleksi desain grafis yang seluruhnya dikerjakan menggunakan Canva — diawali dengan riset referensi visual, lalu dikembangkan dan disesuaikan dengan konsep serta gaya sendiri. Karya mencakup berbagai kebutuhan publikasi digital seperti ucapan resmi, peringatan hari besar nasional, dokumentasi kegiatan, promosi event, hingga konten media sosial organisasi. Selain Canva, saya juga memiliki kemampuan dasar menggunakan CorelDRAW dan Adobe Photoshop untuk kebutuhan desain yang lebih teknis.</p>
           <div class="project-tags reveal" style="margin-top:0;margin-bottom:24px;">
             <span>Canva</span>
@@ -430,7 +413,7 @@
             <span>Hari Nasional</span>
             <span>Organisasi</span>
           </div>
-          <div class="projects-grid design-grid">
+          <div class="projects-grid design-grid horizontal-auto-carousel portfolio-design-carousel" id="portfolio-design-carousel" data-horizontal-carousel data-carousel-items-desktop="3" data-scroll-step-desktop="3" data-carousel-animation="smooth" aria-label="Daftar desain grafis">
             <article class="project-card design-card reveal">
               <div class="project-media" style="aspect-ratio:4/5;">
                 <img src="assets/projects/design/14.webp" alt="Design 14" loading="lazy" decoding="async">
@@ -478,17 +461,13 @@
             </article>
           </div>
 
-          <!-- BUTTON SUB-SECTION GRAPHIC DESIGN -->
-          <div style="margin-top: 24px; margin-bottom: 48px;" class="reveal">
-            <a class="button button-see-more" href="portofolio.html?filter=design">
-              <span>Lihat lebih banyak desain grafis</span>
-            </a>
-          </div>
-
           <!-- VIDEO -->
-          <h2 class="portfolio-category-heading reveal" id="section-video">Video</h2>
+          <div class="portfolio-category-title-row reveal">
+            <h2 class="portfolio-category-heading" id="section-video">Video</h2>
+            <span class="section-count-badge" data-carousel-count data-carousel-count-for="portfolio-video-carousel" data-count-label="Video">2 Video</span>
+          </div>
           <p class="reveal" style="text-align:justify;text-justify:inter-word;margin-top:8px;margin-bottom:24px;color:var(--text-muted);font-size:0.98rem;line-height:1.65;">Koleksi karya videografi dan penyuntingan video yang diproduksi menggunakan Adobe Premiere Pro, mencakup video profile resmi organisasi, videografi event kampus, serta penyuntingan visual sinematik.</p>
-          <div class="projects-grid">
+          <div class="projects-grid horizontal-auto-carousel portfolio-video-carousel" id="portfolio-video-carousel" data-horizontal-carousel aria-label="Daftar video">
             <article class="project-card reveal">
               <a href="https://www.youtube.com/watch?v=QSQfKe1WLQ4" target="_blank" rel="noopener noreferrer" class="video-thumb-link" aria-label="Tonton Video Profile BEM UPB 2025 di YouTube">
                 <div class="project-media video-thumb" style="aspect-ratio:16/9;">
@@ -538,13 +517,6 @@
                 <div class="project-tags"><span>Adobe Premiere Pro</span><span>Dokumentasi</span><span>Papermob</span><span>Prospek UPB</span></div>
               </div>
             </article>
-          </div>
-
-          <!-- BUTTON SUB-SECTION VIDEO -->
-          <div style="margin-top: 24px; margin-bottom: 32px;" class="reveal">
-            <a class="button button-see-more" href="portofolio.html?filter=video">
-              <span>Lihat lebih banyak video</span>
-            </a>
           </div>
 
         </div>
@@ -640,6 +612,6 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=20260904-25"></script>
 </body>
 </html>

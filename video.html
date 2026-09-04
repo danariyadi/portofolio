@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20260904-25">
 </head>
 <body>
   <div class="page-shell">
@@ -18,10 +18,16 @@
       <section class="section page-hero">
         <div class="container">
           <div class="section-heading section-heading--split reveal">
-            <div><span class="section-label">Video Portofolio</span><h1>Dokumentasi kegiatan, videografi event, dan multimedia.</h1></div>
+            <div>
+              <div class="section-label-row">
+                <span class="section-label">Video Portofolio</span>
+                <span class="section-count-badge" data-carousel-count data-carousel-count-for="video-page-carousel" data-count-label="Video">2 Video</span>
+              </div>
+              <h1>Dokumentasi kegiatan, videografi event, dan multimedia.</h1>
+            </div>
             <p>Card di bawah ini disiapkan sebagai gallery video. Nanti bisa diganti dengan thumbnail, link YouTube, atau file video.</p>
           </div>
-          <div class="projects-grid">
+          <div class="projects-grid horizontal-auto-carousel portfolio-video-carousel" id="video-page-carousel" data-horizontal-carousel aria-label="Daftar video">
             <article class="project-card reveal">
               <div class="project-media" style="aspect-ratio:16/9;"><iframe src="https://www.youtube.com/embed/QSQfKe1WLQ4" title="Video Profile BEM UPB 2025" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:block;width:100%;height:100%;border-radius:inherit;"></iframe></div>
               <div class="project-content"><div class="project-meta"><span>Video</span><span>Organisasi</span></div><h3>Video Profile BEM UPB 2025</h3><p style="text-align:justify;text-justify:inter-word;">Video profile resmi BEM Universitas Putra Bangsa 2025 – Kabinet Bima Cita yang diproduksi dan disunting menggunakan Adobe Premiere Pro. Menampilkan visi, misi, dan semangat pengabdian kabinet dalam karya sinematik yang profesional.</p><div class="project-tags"><span>Adobe Premiere Pro</span><span>Video Profile</span><span>BEM UPB</span><span>Sinematik</span></div></div>
@@ -36,6 +42,6 @@
     </main>
     <footer class="site-footer"><div class="container footer-content"><p>Portofolio Dana Riyadi - Graphic Design and Web Developer.</p><p>&copy; <span id="year"></span> Dana Riyadi.</p></div></footer>
   </div>
-  <script src="script.js"></script>
+  <script src="script.js?v=20260904-25"></script>
 </body>
 </html>

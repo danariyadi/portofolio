@@ -136,6 +136,232 @@ document.querySelectorAll("[data-carousel]").forEach((carousel) => {
   updateDots();
 });
 
+document.querySelectorAll("[data-horizontal-carousel]").forEach((carousel) => {
+  const cards = [...carousel.children];
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const shell = document.createElement("div");
+  const controls = document.createElement("div");
+  const previousButton = document.createElement("button");
+  const nextButton = document.createElement("button");
+  const pagination = document.createElement("div");
+  let paginationButtons = [];
+  let animationFrameId;
+  let scrollTicking = false;
+
+  if (cards.length < 2) {
+    return;
+  }
+
+  cards.forEach((card, index) => {
+    const number = document.createElement("span");
+    number.className = "carousel-card-number";
+    number.setAttribute("aria-hidden", "true");
+    number.textContent = String(index + 1).padStart(2, "0");
+    card.appendChild(number);
+  });
+
+  const countBadge = [...document.querySelectorAll("[data-carousel-count]")].find((badge) => {
+    return badge.dataset.carouselCountFor === carousel.id;
+  }) || carousel.closest(".container")?.querySelector("[data-carousel-count]:not([data-carousel-count-for])");
+
+  if (countBadge) {
+    const countLabel = countBadge.dataset.countLabel || "Item";
+    countBadge.textContent = `${cards.length} ${countLabel}`;
+  }
+
+  const getActiveCards = () => cards.filter((card) => !card.classList.contains("is-hidden"));
+
+  shell.className = "horizontal-carousel-shell";
+  controls.className = "horizontal-carousel-controls";
+  carousel.parentNode.insertBefore(shell, carousel);
+  shell.append(carousel, controls);
+
+  previousButton.className = "horizontal-carousel-arrow horizontal-carousel-arrow--prev";
+  previousButton.type = "button";
+  previousButton.setAttribute("aria-label", "Geser ke kartu sebelumnya");
+  previousButton.innerHTML = '<svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>';
+
+  nextButton.className = "horizontal-carousel-arrow horizontal-carousel-arrow--next";
+  nextButton.type = "button";
+  nextButton.setAttribute("aria-label", "Geser ke kartu berikutnya");
+  nextButton.innerHTML = '<svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>';
+
+  pagination.className = "horizontal-carousel-pagination";
+  pagination.setAttribute("aria-label", "Pilih kartu");
+
+  const getStepSize = () => {
+    const desktopStep = Number(carousel.dataset.scrollStepDesktop);
+    const defaultStep = Number(carousel.dataset.scrollStep) || 1;
+
+    return window.matchMedia("(min-width: 861px)").matches && desktopStep
+      ? desktopStep
+      : defaultStep;
+  };
+
+  const getPageIndexes = () => {
+    const stepSize = getStepSize();
+    const activeCards = getActiveCards();
+    const indexes = [];
+
+    for (let index = 0; index < activeCards.length; index += stepSize) {
+      indexes.push(index);
+    }
+
+    return indexes;
+  };
+
+  const getPagePositions = () => {
+    const positions = getCardPositions();
+
+    return getPageIndexes().map((index) => positions[index] ?? positions[positions.length - 1] ?? 0);
+  };
+
+  controls.append(previousButton, pagination, nextButton);
+
+  const getCardPositions = () => {
+    const activeCards = getActiveCards();
+    const firstCardOffset = activeCards[0]?.offsetLeft ?? 0;
+    const maxScrollLeft = Math.max(0, carousel.scrollWidth - carousel.clientWidth);
+    const positions = activeCards.map((card) => Math.min(card.offsetLeft - firstCardOffset, maxScrollLeft));
+
+    return positions.filter((position, index) => index === 0 || Math.abs(position - positions[index - 1]) > 2);
+  };
+
+  const renderPagination = () => {
+    const pageIndexes = getPageIndexes();
+
+    if (paginationButtons.length === pageIndexes.length) {
+      return;
+    }
+
+    pagination.replaceChildren();
+    paginationButtons = pageIndexes.map((_, index) => {
+      const dot = document.createElement("button");
+      dot.className = "horizontal-carousel-dot";
+      dot.type = "button";
+      dot.setAttribute("aria-label", `Tampilkan halaman ${index + 1}`);
+      dot.addEventListener("click", () => {
+        const positions = getPagePositions();
+        animateTo(positions[index] ?? 0);
+      });
+      pagination.appendChild(dot);
+      return dot;
+    });
+  };
+
+  const updateVisibleCards = () => {
+    renderPagination();
+
+    const viewportStart = carousel.scrollLeft;
+    const viewportEnd = viewportStart + carousel.clientWidth;
+    const activeCards = getActiveCards();
+    const firstCardOffset = activeCards[0]?.offsetLeft ?? 0;
+
+    cards.forEach((card) => {
+      if (card.classList.contains("is-hidden")) {
+        card.classList.remove("is-carousel-visible");
+        return;
+      }
+
+      const cardStart = card.offsetLeft - firstCardOffset;
+      const cardEnd = cardStart + card.offsetWidth;
+      const visibleWidth = Math.min(cardEnd, viewportEnd) - Math.max(cardStart, viewportStart);
+      card.classList.toggle("is-carousel-visible", visibleWidth > card.offsetWidth * 0.55);
+    });
+
+    const pagePositions = getPagePositions();
+    const currentIndex = pagePositions.reduce((closestIndex, position, index) => {
+      return Math.abs(position - viewportStart) < Math.abs(pagePositions[closestIndex] - viewportStart)
+        ? index
+        : closestIndex;
+    }, 0);
+
+    paginationButtons.forEach((dot, index) => {
+      const isActive = index === currentIndex;
+      dot.classList.toggle("is-active", isActive);
+      dot.setAttribute("aria-current", isActive ? "true" : "false");
+    });
+  };
+
+  const animateTo = (targetPosition) => {
+    window.cancelAnimationFrame(animationFrameId);
+
+    if (reduceMotion) {
+      carousel.scrollLeft = targetPosition;
+      updateVisibleCards();
+      return;
+    }
+
+    const startPosition = carousel.scrollLeft;
+    const distance = targetPosition - startPosition;
+    const isSmoothCarousel = carousel.dataset.carouselAnimation === "smooth";
+    const duration = isSmoothCarousel
+      ? Math.min(1250, 820 + Math.abs(distance) * 0.12)
+      : Math.min(900, 620 + Math.abs(distance) * 0.16);
+    const startTime = performance.now();
+
+    const animate = (currentTime) => {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easedProgress = isSmoothCarousel
+        ? progress < 0.5
+          ? 4 * progress * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 3) / 2
+        : 1 - Math.pow(1 - progress, 4);
+      carousel.scrollLeft = startPosition + distance * easedProgress;
+
+      if (progress < 1) {
+        animationFrameId = window.requestAnimationFrame(animate);
+      } else {
+        carousel.scrollLeft = targetPosition;
+        updateVisibleCards();
+      }
+    };
+
+    animationFrameId = window.requestAnimationFrame(animate);
+  };
+
+  const moveCarousel = (direction) => {
+    const positions = getPagePositions();
+    const currentPosition = carousel.scrollLeft;
+    const currentIndex = positions.reduce((closestIndex, position, index) => {
+      return Math.abs(position - currentPosition) < Math.abs(positions[closestIndex] - currentPosition)
+        ? index
+        : closestIndex;
+    }, 0);
+    const targetIndex = direction > 0
+      ? (currentIndex + 1) % positions.length
+      : (currentIndex - 1 + positions.length) % positions.length;
+
+    animateTo(positions[targetIndex]);
+  };
+
+  previousButton.addEventListener("click", () => {
+    moveCarousel(-1);
+  });
+
+  nextButton.addEventListener("click", () => {
+    moveCarousel(1);
+  });
+
+  carousel.addEventListener("scroll", () => {
+    if (!scrollTicking) {
+      window.requestAnimationFrame(() => {
+        updateVisibleCards();
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener("resize", updateVisibleCards, { passive: true });
+  carousel.addEventListener("portfolio-filter-change", () => {
+    carousel.scrollLeft = 0;
+    updateVisibleCards();
+  });
+
+  updateVisibleCards();
+});
+
 const closeMenu = () => {
   if (!menuToggle || !navMenu) {
     return;
@@ -334,6 +560,10 @@ filterButtons.forEach((button) => {
       const categories = (card.dataset.category || "").split(" ").filter(Boolean);
       const matches = filter === "all" || categories.includes(filter);
       card.classList.toggle("is-hidden", !matches);
+    });
+
+    document.querySelectorAll("[data-horizontal-carousel]").forEach((carousel) => {
+      carousel.dispatchEvent(new CustomEvent("portfolio-filter-change"));
     });
   });
 });
